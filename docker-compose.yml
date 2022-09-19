@@ -1,0 +1,33 @@
+version: '2'
+services:
+  app:
+    image: 'bitnami/codeigniter:3'
+    ports:
+      - '8000:8000'
+    volumes:
+      - '.:/app'
+    networks:
+      WS_network: null
+    depends_on:
+      - webService_db
+
+  webService_db:
+    image: mysql:5.6
+    container_name: webService_db
+    ports:
+      - "3307:3306"
+    environment:
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_USER: 'admin'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    networks:
+      WS_network: null
+    # depends_on:
+    #   - webService
+
+networks:
+  WS_network: null
