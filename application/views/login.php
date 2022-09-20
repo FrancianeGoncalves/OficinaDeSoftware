@@ -24,19 +24,6 @@
 </head>
 
 <body class="sign-in-basic">
-<!-- Navbar Transparent -->
-<!--<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">-->
-<!--	<div class="container">-->
-<!--		<div class="row">-->
-<!--			<div class="col-sm col-sm col-lg-3">-->
-<!--				<a class="navbar-brand  text-white " href="--><?//=base_url()?><!--" rel="tooltip" title="O que tem pra hoje?" data-placement="bottom">-->
-<!--					<img src="--><?//=base_url('assets/img/now-logo.png')?><!--" class="img-fluid border-radius-lg" alt="Responsive image">-->
-<!--				</a>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</nav>-->
-<!-- End Navbar -->
 <div class="page-header align-items-start min-vh-100" style="background-image: url('<?=base_url('assets/img/fundo.jpg')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
@@ -45,25 +32,10 @@
 				<div class="card z-index-0 fadeIn3 fadeInBottom">
 					<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
 						<div class="bg-gradient-warning shadow-primary border-radius-lg py-3 pe-1">
-							<div class="col-sm col-sm col-lg-8 justify-content-center">
-								<a class="navbar-brand  text-white " href="<?=base_url()?>" rel="tooltip" title="O que tem pra hoje?" data-placement="bottom">
-									<img src="<?=base_url('assets/img/now-logo.png')?>" class="img-fluid border-radius-lg" alt="Responsive image">
-								</a>
-							</div>
-							<div class="row mt-3">
-								<div class="col-2 text-center ms-auto">
-									<a class="btn btn-link px-3" href="javascript:;">
-										<i class="fa fa-facebook text-white text-lg"></i>
-									</a>
-								</div>
-								<div class="col-2 text-center px-1">
-									<a class="btn btn-link px-3" href="javascript:;">
-										<i class="fa fa-github text-white text-lg"></i>
-									</a>
-								</div>
-								<div class="col-2 text-center me-auto">
-									<a class="btn btn-link px-3" href="javascript:;">
-										<i class="fa fa-google text-white text-lg"></i>
+							<div class="row h-100 d-flex align-items-center justify-content-center">
+								<div class="col-sm col-sm col-lg-8">
+									<a class="navbar-brand  text-white " href="<?=base_url()?>" rel="tooltip" title="O que tem pra hoje?" data-placement="bottom">
+										<img src="<?=base_url('assets/img/now-logo.png')?>" class="img-fluid border-radius-lg" alt="Responsive image">
 									</a>
 								</div>
 							</div>
@@ -107,22 +79,6 @@
 						<a href="https://www.creative-tim.com" class="font-weight-bold text-white" target="_blank">Creative Tim</a>
 						for a better web.
 					</div>
-				</div>
-				<div class="col-12 col-md-6">
-					<ul class="nav nav-footer justify-content-center justify-content-lg-end">
-						<li class="nav-item">
-							<a href="https://www.creative-tim.com" class="nav-link text-white" target="_blank">Creative Tim</a>
-						</li>
-						<li class="nav-item">
-							<a href="https://www.creative-tim.com/presentation" class="nav-link text-white" target="_blank">About Us</a>
-						</li>
-						<li class="nav-item">
-							<a href="https://www.creative-tim.com/blog" class="nav-link text-white" target="_blank">Blog</a>
-						</li>
-						<li class="nav-item">
-							<a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-white" target="_blank">License</a>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</div>
