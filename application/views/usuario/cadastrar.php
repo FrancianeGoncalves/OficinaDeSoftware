@@ -32,7 +32,7 @@
 <div class="page-header align-items-start min-vh-100" style="background-image: url('<?=base_url('assets/img/fundo.jpg')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
-		<div class="row">
+		<div class="row mt-4">
 			<div class="col-lg-4 col-md-8 col-12 mx-auto">
 				<div class="card z-index-0 fadeIn3 fadeInBottom">
 					<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -47,8 +47,12 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h4>Login</h4>
+						<h4>Cadastro de Usuário</h4>
 						<form role="form" class="text-start">
+							<div class="input-group input-group-outline my-3">
+								<label class="form-label">Nome</label>
+								<input type="email" class="form-control">
+							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Email</label>
 								<input type="email" class="form-control">
@@ -57,16 +61,16 @@
 								<label class="form-label">Senha</label>
 								<input type="password" class="form-control">
 							</div>
-							<div class="form-check form-switch d-flex align-items-center mb-3">
-								<input class="form-check-input" type="checkbox" id="rememberMe" checked>
-								<label class="form-check-label mb-0 ms-3" for="rememberMe">Me lembre</label>
+							<div class="input-group input-group-outline mb-3">
+								<label class="form-label">Confirme a Senha</label>
+								<input type="password" class="form-control">
 							</div>
 							<div class="text-center">
-								<button type="button" class="btn bg-gradient-warning w-100 my-4 mb-2">Entrar</button>
+								<button type="button" class="btn bg-gradient-warning w-100 my-4 mb-2">Cadastrar</button>
 							</div>
-							<a href="<?=base_url('usuario/Cadastrar')?>">
+							<a href="<?=base_url('Login')?>">
 								<p class="mt-4 text-sm text-center">
-									Não tem uma conta?
+									Já tem uma conta?
 								</p>
 							</a>
 						</form>
