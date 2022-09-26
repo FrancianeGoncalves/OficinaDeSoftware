@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <!DOCTYPE html>
 <html lang="pt-br" itemscope itemtype="http://schema.org/WebPage">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,13 +25,22 @@
 			color: #FF480C !important;
 		}
 	</style>
+	<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 </head>
-
 <body class="sign-in-basic">
 <div class="page-header align-items-start min-vh-100" style="background-image: url('<?=base_url('assets/img/fundo.jpg')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
-		<div class="row mt-4">
+		<?php if($error):?>
+			<div class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+				<span class="alert-icon"><i class="fa fa-warning"></i></span>
+				<span class="alert-text"><strong>ERRO(S): </strong> <br><?=$error?></span>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		<?php endif;?>
+		<div class="row mt-6">
 			<div class="col-lg-4 col-md-8 col-12 mx-auto">
 				<div class="card z-index-0 fadeIn3 fadeInBottom">
 					<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -48,25 +56,35 @@
 					</div>
 					<div class="card-body">
 						<h4>Cadastro de Usuário</h4>
-						<form role="form" class="text-start">
+						<form role="form" class="text-start" action="<?= base_url('usuario/Cadastrar/novo')?>"
+							  method="POST">
+							<div class="input-group input-group-outline my-3">
+								<label class="form-label">Cpf</label>
+								<input type="text" class="form-control nome" name="cpf" id="cpf">
+							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Nome</label>
-								<input type="email" class="form-control">
+								<input type="text" class="form-control nome" name="nome" id="nome">
+							</div>
+							<div class="input-group input-group-outline my-3">
+								<label class="form-label">Nome de Usuário</label>
+								<input type="text" class="form-control" name="nome_usuario" id="nome_usuario">
 							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Email</label>
-								<input type="email" class="form-control">
+								<input type="email" class="form-control" name="email" id="email">
 							</div>
 							<div class="input-group input-group-outline mb-3">
 								<label class="form-label">Senha</label>
-								<input type="password" class="form-control">
+								<input type="password" class="form-control" name="senha" id="senha">
 							</div>
 							<div class="input-group input-group-outline mb-3">
 								<label class="form-label">Confirme a Senha</label>
-								<input type="password" class="form-control">
+								<input type="password" class="form-control" name="senha_confirmar"
+									   id="senha_confirmar">
 							</div>
 							<div class="text-center">
-								<button type="button" class="btn bg-gradient-warning w-100 my-4 mb-2">Cadastrar</button>
+								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2">Cadastrar</button>
 							</div>
 							<a href="<?=base_url('Login')?>">
 								<p class="mt-4 text-sm text-center">
@@ -106,6 +124,13 @@
 <!--  Google Maps Plugin    -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
 <script src="<?=base_url('assets/material-kit/assets/js/material-kit.min.js?v=3.0.4')?>" type="text/javascript"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<script>
+	$(document).ready(function () {
+		var $seuCampoCpf = $("#cpf");
+		$seuCampoCpf.mask('000.000.000-00', {reverse: true});
+	});
+</script>
 </body>
-
 </html>

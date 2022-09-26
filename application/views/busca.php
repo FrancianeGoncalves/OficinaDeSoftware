@@ -40,9 +40,11 @@
 		<div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
 			<ul class="navbar-nav navbar-nav-hover ms-auto">
 				<li class="nav-item ms-lg-auto">
-					<a class="nav-link nav-link-icon me-2" href="https://github.com/creativetimofficial/soft-ui-design-system" target="_blank">
-						<i class="fa fa-mug-hot me-1"></i>
-						<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Star us on Github">Github</p>
+					<a class="nav-link nav-link-icon me-2" href="<?=base_url('usuario/Cadastrar')?>">
+						<i class="fa fa-user-plus me-1"></i>
+						<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+						   data-bs-placement="bottom"
+						>Cadastre-se</p>
 					</a>
 				</li>
 				<li class="nav-item my-auto ms-3 ms-lg-0">
@@ -56,7 +58,7 @@
 <div class="page-header align-items-start min-vh-100 " style="background-image: url('<?=base_url('assets/img/fundo2.png')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
-		<div class="row mt-8 mb-8">
+		<div class="row mt-8 mb-10">
 			<div class="col-lg-6 col-md-8 col-12 mx-auto ">
 				<div class="card z-index-0 fadeIn3 fadeInBottom">
 					<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -123,7 +125,7 @@
 			</div>
 		</div>
 	</div>
-	<footer class="footer position-absolute bottom-2 py-2 w-100">
+	<footer class=" mt-4 footer position-absolute bottom-2 py-2 w-100">
 		<div class="container">
 			<div class="row align-items-center justify-content-lg-between">
 				<div class="col-12 col-md-6 my-auto">
