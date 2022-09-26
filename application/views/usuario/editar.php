@@ -58,7 +58,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<h4>Cadastro de Usuário</h4>
+						<h4>Editar Usuário</h4>
 						<form role="form" class="text-start" action="<?= base_url('usuario/Cadastrar/novo')?>"
 							  method="POST">
 							<div class="input-group input-group-outline my-3">
@@ -87,13 +87,16 @@
 									   id="senha_confirmar">
 							</div>
 							<div class="text-center">
-								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2">Cadastrar</button>
-							</div>
-							<a href="<?=base_url('Login')?>">
-								<p class="mt-4 text-sm text-center">
-									Já tem uma conta?
-								</p>
-							</a>
+								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2">Salvar</button>
+                            </div>
+                            <div class = "text-center"> 
+                            <a class="nav-link nav-link-icon me-2" href="<?=base_url('usuario/Cadastrar')?>">
+						            <i class="fa fa-trash"></i>
+						            <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+						         data-bs-placement="bottom"
+						        >Deletar conta</p>
+					         </a>
+                            </div>
 						</form>
 					</div>
 				</div>
