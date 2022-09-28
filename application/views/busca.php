@@ -39,8 +39,9 @@
 		</button>
 		<div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
 			<ul class="navbar-nav navbar-nav-hover ms-auto">
+				<?php if(intval($this->session->userdata('login')) != 1):?>
 				<li class="nav-item ms-lg-auto">
-					<a class="nav-link nav-link-icon me-2" href="<?=base_url('usuario/Cadastrar')?>">
+					<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
 						<i class="fa fa-user-plus me-1"></i>
 						<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
 						   data-bs-placement="bottom"
@@ -48,8 +49,20 @@
 					</a>
 				</li>
 				<li class="nav-item my-auto ms-3 ms-lg-0">
-					<a href="<?=base_url('login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
+					<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
 				</li>
+				<?php else:?>
+					<li class="nav-item my-auto ms-3 ms-lg-0">
+						<a href="<?=base_url('Usuario/perfil')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">
+							<i class="fa fa-user me-1"></i>
+							Perfil</a>
+					</li>
+					<li class="nav-item my-auto ms-3 ms-lg-0">
+						<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">
+							<i class="fa fa-trash me-1"></i>
+							Sair</a>
+					</li>
+				<?php endif;?>
 			</ul>
 		</div>
 	</div>
@@ -99,27 +112,6 @@
 							</div>
 						</div>
 					</div>
-<!--					<div class="card-body">-->
-<!--						<form role="form" class="text-start">-->
-<!--							<div class="input-group input-group-outline my-3">-->
-<!--								<label class="form-label">Email</label>-->
-<!--								<input type="email" class="form-control">-->
-<!--							</div>-->
-<!--							<div class="input-group input-group-outline mb-3">-->
-<!--								<label class="form-label">Password</label>-->
-<!--								<input type="password" class="form-control">-->
-<!--							</div>-->
-<!--							<div class="form-check form-switch d-flex align-items-center mb-3">-->
-<!--								<input class="form-check-input" type="checkbox" id="rememberMe" checked>-->
-<!--								<label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>-->
-<!--							</div>-->
-<!--							<div class="text-center">-->
-<!--								<button type="button" class="btn bg-gradient-warning w-100 my-4 mb-2">Sign in</button>-->
-<!--							</div>-->
-<!--							<p class="mt-4 text-sm text-center">-->
-<!--								Don't have an account?-->
-<!--							</p>-->
-<!--						</form>-->
 					</div>
 				</div>
 			</div>

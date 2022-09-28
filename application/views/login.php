@@ -25,6 +25,10 @@
 		a:hover{
 			color: #FF480C !important;
 		}
+		#msg_error{
+			color: #000000 !important;
+			margin-bottom: 5% !important;
+		}
 	</style>
 </head>
 
@@ -32,6 +36,15 @@
 <div class="page-header align-items-start min-vh-100" style="background-image: url('<?=base_url('assets/img/fundo.jpg')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
+		<?php if($error):?>
+			<div id = "msg_error" class="alert alert-danger alert-dismissible fade show mt-4" role="alert">
+				<span class="alert-icon"><i class="fa fa-warning"></i></span>
+				<span class="alert-text"><strong>ERRO: </strong> <br>Erro ao efetuar login, tente novamente</span>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		<?php endif;?>
 		<div class="row">
 			<div class="col-lg-4 col-md-8 col-12 mx-auto">
 				<div class="card z-index-0 fadeIn3 fadeInBottom">
@@ -48,23 +61,23 @@
 					</div>
 					<div class="card-body">
 						<h4>Login</h4>
-						<form role="form" class="text-start">
+						<form role="form" class="text-start" action="<?=base_url('Login/loginUsuario')?>" method="post">
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Email</label>
-								<input type="email" class="form-control">
+								<input type="email" class="form-control email"  name="email" id="email" required>
 							</div>
 							<div class="input-group input-group-outline mb-3">
 								<label class="form-label">Senha</label>
-								<input type="password" class="form-control">
+								<input type="password" class="form-control senha" name="senha" id="senha" required>
 							</div>
 							<div class="form-check form-switch d-flex align-items-center mb-3">
 								<input class="form-check-input" type="checkbox" id="rememberMe" checked>
 								<label class="form-check-label mb-0 ms-3" for="rememberMe">Me lembre</label>
 							</div>
 							<div class="text-center">
-								<button type="button" class="btn bg-gradient-warning w-100 my-4 mb-2">Entrar</button>
+								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2">Entrar</button>
 							</div>
-							<a href="<?=base_url('usuario/Cadastrar')?>">
+							<a href="<?=base_url('Usuario/cadastrar')?>">
 								<p class="mt-4 text-sm text-center">
 									Não tem uma conta?
 								</p>

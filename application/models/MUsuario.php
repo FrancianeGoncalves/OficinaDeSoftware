@@ -1,15 +1,31 @@
 <?php
 class MUsuario extends CI_Model {
 
-	public $nome_table;
+	public $table;
 	public function __construct()
 	{
 		parent::__construct();
-		$this->name_table = 'usuario';
+		$this->table = 'usuario';
 	}
 
 	public function salvar($usuario){
-		$this->db->insert($this->name_table,$usuario);
+		$this->db->insert($this->table,$usuario);
+	}
+
+	public function get($email,$senha){
+		$this->db->where('email',$email);
+		$this->db->where('senha',$senha);
+		return $this->db->get($this->table)->row_object();
+	}
+
+	public function geByCpf($cpf){
+		$this->db->where('cpf',$cpf);
+		return $this->db->get($this->table)->row_object();
+	}
+
+	public function editar($usuario){
+		$this->db->where('cpf',$this->session->userdata('idUsuario'));
+		$this->db->update($this->table, $usuario);
 	}
 }
 

@@ -59,32 +59,32 @@
 					</div>
 					<div class="card-body">
 						<h4>Cadastro de Usuário</h4>
-						<form role="form" class="text-start" action="<?= base_url('usuario/Cadastrar/novo')?>"
-							  method="POST">
+						<form role="form" class="text-start" action="<?= base_url('Usuario/novo')?>"
+							  method="POST" id="myForm">
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">CPF</label>
-								<input type="text" class="form-control nome" name="cpf" id="cpf">
+								<input type="text" class="form-control nome" name="cpf" id="cpf" required>
 							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Nome</label>
-								<input type="text" class="form-control nome" name="nome" id="nome">
+								<input type="text" class="form-control nome" name="nome" id="nome" required>
 							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Nome de Usuário</label>
-								<input type="text" class="form-control" name="nome_usuario" id="nome_usuario">
+								<input type="text" class="form-control" name="nome_usuario" id="nome_usuario" required>
 							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Email</label>
-								<input type="email" class="form-control" name="email" id="email">
+								<input type="email" class="form-control" name="email" id="email" required>
 							</div>
 							<div class="input-group input-group-outline mb-3">
 								<label class="form-label">Senha</label>
-								<input type="password" class="form-control" name="senha" id="senha">
+								<input type="password" class="form-control" name="senha" id="senha" required>
 							</div>
 							<div class="input-group input-group-outline mb-3">
 								<label class="form-label">Confirme a Senha</label>
 								<input type="password" class="form-control" name="senha_confirmar"
-									   id="senha_confirmar">
+									   id="senha_confirmar" required>
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2">Cadastrar</button>
@@ -129,11 +129,6 @@
 <script src="<?=base_url('assets/material-kit/assets/js/material-kit.min.js?v=3.0.4')?>" type="text/javascript"></script>
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-<script>
-	$(document).ready(function () {
-		var $seuCampoCpf = $("#cpf");
-		$seuCampoCpf.mask('000.000.000-00', {reverse: true});
-	});
-</script>
+<script src="<?=base_url('assets/js/cpf.js')?>" type="text/javascript"></script>
 </body>
 </html>
