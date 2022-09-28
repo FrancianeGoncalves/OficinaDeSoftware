@@ -1,8 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends MY_Controller {
-
+/**
+ * 
+ */
+class Login extends MY_Controller 
+{
+	/**
+	 * 
+	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,35 +16,50 @@ class Login extends MY_Controller {
 		$this->load->library('encryption');
 	}
 
+	/**
+	 * @param $error
+	 * @return void
+	 */
 	public function index($error = false)
 	{
 		$this->load->view('login',array("error"=>$error));
 	}
 
+	/**
+	 * @return void
+	 */
 	public function loginUsuario()
 	{
-		try {
+		try 
+		{
 			$email = $this->input->post("email");
 			$senha = $this->input->post("senha");
 			$usuario = $this->MUsuario->get($email,$senha);
-			if($usuario != null){
+			if($usuario != null)
+			{
 				$this->setUsuarioSession($usuario);
 				redirect(base_url());
-			}else{
+			}else
+			{
 				redirect(base_url('Login/index/true'));
 			}
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "Erro no login";
 		}
 	}
 
-	public function logout(){
-		try {
-			$this->load->database();
-			$this->session->unset_userdata("login");
-			$this->session->sess_destroy();// acaba a sessão
+	/**
+	 * @return void
+	 */
+	public function logout()
+	{
+		try 
+		{
+			$this->clearSession();
 			redirect(base_url());
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "Erro no logout";
 		}
 	}

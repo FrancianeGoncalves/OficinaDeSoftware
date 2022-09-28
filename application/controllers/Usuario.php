@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Classe Usuario
  */
-class Usuario extends MY_Controller {
+class Usuario extends MY_Controller 
+{
 
 	/**
 	 * construct usuário
@@ -22,9 +23,11 @@ class Usuario extends MY_Controller {
 	 */
 	public function index($error = false)
 	{
-		try {
+		try 
+		{
 			$this->load->view('usuario/cadastrar',array('error'=>$error));
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "";
 		}
 	}
@@ -35,9 +38,11 @@ class Usuario extends MY_Controller {
 	 */
 	public function cadastrar($error = false)
 	{
-		try {
+		try 
+		{
 			$this->load->view('usuario/cadastrar',array('error'=>$error));
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "";
 		}
 	}
@@ -47,12 +52,14 @@ class Usuario extends MY_Controller {
 	 */
 	public function perfil()
 	{
-		try {
+		try 
+		{
 			$this->verificarLogin();
 			$usuario = $this->MUsuario->geByCpf($this->session->userdata('idUsuario'));
 			$this->load->view('usuario/perfil',array("validada" => $this->session->flashdata('validada'),
 				"naovalidada" => $this->session->flashdata('naovalidada'),'usuario'=>$usuario));
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "";
 		}
 	}
@@ -60,19 +67,24 @@ class Usuario extends MY_Controller {
 	/**
 	 * @return void
 	 */
-	public function novo(){
-		try {
+	public function novo()
+	{
+		try
+		{
 			$this->form_validation->set_rules('cpf', 'Cpf', 'required|is_unique[usuario.cpf]');
 			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[usuario.email]');
 			$validation = $this->validationForm();
-			if($validation == FALSE){
+			if($validation == FALSE)
+			{
 				$this->cadastrar(validation_errors());
-			}else{
+			}else
+			{
 				$usuario = $this->setArray();
 				$this->MUsuario->salvar($usuario);
 				redirect(base_url('Login'));
 			}
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "";
 		}
 	}
@@ -82,17 +94,22 @@ class Usuario extends MY_Controller {
 	 */
 	public function editar()
 	{
-		try {
-			if($this->input->post('email') == $this->session->userdata('email')){
+		try 
+		{
+			if($this->input->post('email') == $this->session->userdata('email'))
+			{
 				$this->form_validation->set_rules('email', 'Email', 'required');
-			}else{
+			}else
+			{
 				$this->form_validation->set_rules('email', 'Email', 'required|is_unique[usuario.email]');
 			}
 			$validation = $this->validationForm();
-			if($validation == FALSE){
+			if($validation == FALSE)
+			{
 				$this->setMsgFlash(validation_errors(),'naovalidada');
 				redirect(base_url('Usuario/perfil/'));
-			}else{
+			}else
+			{
 				$usuario = $this->setArray();
 				$this->MUsuario->editar($usuario);
 				$this->verificarLogin();
@@ -100,7 +117,8 @@ class Usuario extends MY_Controller {
 				$this->setUsuarioSession($usuario);
 				redirect(base_url('Usuario/perfil'));
 			}
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "";
 		}
 	}
@@ -113,13 +131,15 @@ class Usuario extends MY_Controller {
 		/**
 		 *por outras validações como se senhas confere
 		 */
-		try {
+		try 
+		{
 			$this->form_validation->set_rules('nome', 'Nome', 'required');
 			$this->form_validation->set_rules('nome_usuario', 'Nome de Usuário', 'required');
 			$this->form_validation->set_rules('senha', 'Senha', 'required');
 			$this->form_validation->set_rules('senha_confirmar', 'Senha de Confirmação', 'required|matches[senha]');
 			return $this->form_validation->run();
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "";
 		}
 	}
@@ -129,7 +149,8 @@ class Usuario extends MY_Controller {
 	 */
 	protected function setArray()
 	{
-		try {
+		try 
+		{
 			$cpf = $this->input->post('cpf') ? $this->input->post('cpf'): $this->session->userdata('idUsuario');
 			return array(
 				'cpf' => $cpf,
@@ -138,7 +159,8 @@ class Usuario extends MY_Controller {
 				'email' => $this->input->post('email'),
 				'senha' => $this->input->post('senha')
 			);
-		}catch (Exception $e) {
+		}catch (Exception $e) 
+		{
 			$dados['erro'] = "";
 		}
 	}
@@ -148,6 +170,7 @@ class Usuario extends MY_Controller {
 	 */
 	public function deletar()
 	{
-		
+		$this->MUsuario->excluir();
+		$this->clearSession();
 	}
 }

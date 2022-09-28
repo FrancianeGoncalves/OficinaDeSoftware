@@ -20,18 +20,24 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 	<!-- CSS Files -->
 	<link id="pagestyle" href="<?=base_url('assets/material-kit/assets/css/material-kit.css?v=3.0.4')?>" rel="stylesheet" />
+	<script src="<?=base_url('assets/sweetalert2/dist/sweetalert2.all.js')?>"></script>
 	<style>
 		a:hover{
 			color: #FF480C !important;
+
 		}
 		#msg_error{
 			color: #000000 !important;
+		}
+		a{
+			cursor: pointer !important;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 </head>
 <body class="sign-in-basic">
 <div class="page-header align-items-start min-vh-100" style="background-image: url('<?=base_url('assets/img/fundo.jpg')?>');" loading="lazy">
+	<input type="hidden" id="urlBase" value="<?=base_url()?>">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
 		<!-- end page title -->
@@ -70,38 +76,38 @@
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">CPF</label>
 								<input type="text" class="form-control nome" name="cpf" id="cpf"
-								value="<?=$usuario->cpf?>" disabled>
+								value="<?=$usuario->cpf?>" readonly>
 							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Nome</label>
 								<input type="text" class="form-control nome" name="nome" id="nome"
-									   value="<?=$usuario->nome?>">
+									   value="<?=$usuario->nome?>" required>
 							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Nome de Usuário</label>
 								<input type="text" class="form-control" name="nome_usuario" id="nome_usuario"
-									   value="<?=$usuario->nome_usuario?>">
+									   value="<?=$usuario->nome_usuario?>" required>
 							</div>
 							<div class="input-group input-group-outline my-3">
 								<label class="form-label">Email</label>
 								<input type="email" class="form-control" name="email" id="email"
-									   value="<?=$usuario->email?>">
+									   value="<?=$usuario->email?>" required>
 							</div>
 							<div class="input-group input-group-outline mb-3">
 								<label class="form-label">Senha</label>
 								<input type="password" class="form-control" name="senha" id="senha"
-									   value="<?=$usuario->senha?>">
+									   value="<?=$usuario->senha?>" required>
 							</div>
 							<div class="input-group input-group-outline mb-3">
 								<label class="form-label">Confirme a Senha</label>
 								<input type="password" class="form-control" name="senha_confirmar"
-									   id="senha_confirmar">
+									   id="senha_confirmar" required>
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2">Salvar</button>
                             </div>
                             <div class = "text-center"> 
-                            <a class="nav-link nav-link-icon me-2" href="<?=base_url('usuario/Cadastrar')?>">
+                            <a class="nav-link nav-link-icon me-2" id="deletar_usuario">
 						            <i class="fa fa-trash"></i>
 						            <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
 						         data-bs-placement="bottom"
@@ -144,5 +150,6 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 <script src="<?=base_url('assets/js/cpf.js')?>" type="text/javascript"></script>
+<script src="<?=base_url('assets/js/perfil.js')?>" type="text/javascript"></script>
 </body>
 </html>
