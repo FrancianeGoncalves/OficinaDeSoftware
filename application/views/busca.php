@@ -67,9 +67,9 @@
 							Perfil
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<li><a class="dropdown-item" href="#">Perfil</a></li>
-							<li><a class="dropdown-item" href="#">Configurações</a></li>
-							<li><a class="dropdown-item" href="#">Sair</a></li>
+							<li><a href="<?=base_url('Usuario/perfil')?>" class="dropdown-item" href="#">Perfil</a></li>
+							<!--<li><a class="dropdown-item" href="#">Configurações</a></li>-->
+							<li><a href="<?=base_url('Login/logout')?>" class="dropdown-item" href="#">Sair</a></li>
 						</ul>
 					</div>
 				<?php endif;?>
