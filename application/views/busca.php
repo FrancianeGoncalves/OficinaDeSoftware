@@ -52,7 +52,7 @@
 					<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
 				</li>
 				<?php else:?>
-					<li class="nav-item my-auto ms-3 ms-lg-0">
+					<!--<li class="nav-item my-auto ms-3 ms-lg-0">
 						<a href="<?=base_url('Usuario/perfil')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">
 							<i class="fa fa-user me-1"></i>
 							Perfil</a>
@@ -61,7 +61,17 @@
 						<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">
 							<i class="fa fa-trash me-1"></i>
 							Sair</a>
-					</li>
+					</li>-->
+					<div class="dropdown">
+						<button class="btn bg-gradient-warning dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+							Perfil
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<li><a href="<?=base_url('Usuario/perfil')?>" class="dropdown-item" href="#">Perfil</a></li>
+							<!--<li><a class="dropdown-item" href="#">Configurações</a></li>-->
+							<li><a href="<?=base_url('Login/logout')?>" class="dropdown-item" href="#">Sair</a></li>
+						</ul>
+					</div>
 				<?php endif;?>
 			</ul>
 		</div>
