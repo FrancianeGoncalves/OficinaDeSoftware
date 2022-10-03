@@ -43,6 +43,11 @@
 				</button>
 			</div>
 		<?php endif;?>
+		<li class="nav-item my-auto ms-3 ms-lg-0">
+			<a href="<?=base_url()?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">
+				<i class="fa fa-user me-1"></i>
+				HOME</a>
+		</li>
 		<div class="row mt-6">
 			<div class="col-lg-4 col-md-8 col-12 mx-auto">
 				<div class="card z-index-0 fadeIn3 fadeInBottom">
