@@ -78,7 +78,7 @@
 	</div>
 </nav>
 <!-- End Navbar -->
-<div class="page-header align-items-start min-vh-100 " style="background-image: url('<?=base_url('assets/img/fundo2.png')?>');" loading="lazy">
+<div class="page-header align-items-start min-vh-100 " background_attachment ="scroll" style="background-image: url('<?=base_url('assets/img/fundo2.png')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
 		<div class="row mt-8 mb-10">
@@ -127,14 +127,14 @@
 				
 			</div>
 			</div>
-
 		</div>
     <!-- receitas-->
-	<section class="pt-5 pb-5">
-		<div class="container">
+	<section class="pt-5 pb-5 ">
+					
+		<div class="container" >
 			<div class="row">
 				<div class="col-6">
-					<h3 class="mb-3">Receitas </h3>
+					<h3 class="mb-3">Receitas mais vistas </h3>
 				</div>
 				<div class="col-6 text-right">
 					<a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
@@ -155,8 +155,10 @@
 										<div class="card">
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1018774879-receitasparacriancas-paodequeijo.jpg">
 											<div class="card-body">
-												<h4 class="card-title">Pão de Queijo</h4>
-												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+												<h4 class="card-title d-flex justify-content-center">Pão de Queijo</h4>
+												<h5 class="card-text fa fa-users opacity-6 col-3"> 5</h5>
+												<h5 class="card-text fa fa-clock opacity-6 col-3"> 30m</h5>
+												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.8</h5>
 
 											</div>
 
@@ -166,7 +168,7 @@
 										<div class="card">
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1992932943-receitasparacriancas-cachorroquente.jpg">
 											<div class="card-body">
-												<h4 class="card-title">Special title treatment</h4>
+												<h4 class="card-title d-flex justify-content-center">Cachorro quente no espeto</h4>
 												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
 											</div>
@@ -176,7 +178,7 @@
 										<div class="card">
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/456309814-receitasparacriancas-batata.jpg">
 											<div class="card-body">
-												<h4 class="card-title">Special title treatment</h4>
+												<h4 class="card-title d-flex justify-content-center">Batata Frita</h4>
 												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
 											</div>
@@ -264,6 +266,9 @@
 		</div>
 	</section>
 	</div>
+	
+	</div>
+	<!--
 	<footer class=" mt-4 footer position-absolute bottom-2 py-2 w-100">
 		<div class="container">
 			<div class="row align-items-center justify-content-lg-between">
@@ -280,6 +285,9 @@
 			</div>
 		</div>
 	</footer>
+	-->
+
+
 </div>
 <!--   Core JS Files   -->
 <script src="<?=base_url('assets/material-kit/assets/js/core/popper.min.js" type="text/javascript')?>"></script>
