@@ -1,9 +1,9 @@
 <?php
-
 /**
  *
  */
-class MIngrediente extends CI_Model {
+class MUtensilio extends CI_Model {
+
 	/**
 	 * @var string
 	 */
@@ -15,7 +15,7 @@ class MIngrediente extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->table = 'ingrediente';
+		$this->table = 'utensilio';
 	}
 
 	/**
@@ -26,23 +26,23 @@ class MIngrediente extends CI_Model {
 	}
 
 	/**
-	 * @param $ingrediente
+	 * @param $utensilio
 	 * @return void
 	 */
-	public function salvar($ingrediente)
+	public function salvar($utensilio)
 	{
-		$this->db->insert($this->table,$ingrediente);
+		$this->db->insert($this->table,$utensilio);
 	}
 
 	/**
-	 * @param $ingrediente
+	 * @param $utensilio
 	 * @param $id
 	 * @return void
 	 */
-	public function editar($ingrediente,$id)
+	public function editar($utensilio,$id)
 	{
-		$this->db->where('idingrediente',$id);
-		$this->db->update($this->table, $ingrediente);
+		$this->db->where('idutensilio',$id);
+		$this->db->update($this->table, $utensilio);
 	}
 
 	/**
@@ -51,7 +51,7 @@ class MIngrediente extends CI_Model {
 	 */
 	public function excluir($id)
 	{
-		$this->db->where('idingrediente',$id);
+		$this->db->where('idutensilio',$id);
 		$this->db->delete($this->table);
 	}
 }
