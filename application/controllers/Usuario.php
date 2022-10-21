@@ -56,7 +56,7 @@ class Usuario extends MY_Controller
 		{
 			$this->verificarLogin();
 			$usuario = $this->MUsuario->geByCpf($this->session->userdata('idUsuario'));
-			$this->load->view('usuario/perfil',array("validada" => $this->session->flashdata('validada'),
+			$this->load->view('usuario/perfil2',array("validada" => $this->session->flashdata('validada'),
 				"naovalidada" => $this->session->flashdata('naovalidada'),'usuario'=>$usuario));
 		}catch (Exception $e) 
 		{

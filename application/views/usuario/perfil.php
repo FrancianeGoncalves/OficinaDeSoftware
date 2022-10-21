@@ -78,7 +78,7 @@
 						<h4>Editar Usuário</h4>
 						<form role="form" class="text-start" action="<?= base_url('Usuario/editar')?>"
 							  method="POST" id="myForm">
-							<div class="input-group input-group-outline my-3">
+							<div class="input-group input-group-static my-3">
 								<label class="form-label">CPF</label>
 								<input type="text" class="form-control nome" name="cpf" id="cpf"
 								value="<?=$usuario->cpf?>" readonly>

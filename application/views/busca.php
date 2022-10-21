@@ -68,6 +68,8 @@
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<li><a href="<?=base_url('Usuario/perfil')?>" class="dropdown-item" href="#">Perfil</a></li>
+							<li><a href="<?=base_url('Ingrediente')?>" class="dropdown-item" href="#">Gerenciar Ingredientes</a></li>
+							<li><a href="<?=base_url('utensilios')?>" class="dropdown-item" href="#">Gerenciar Utensílios</a></li>
 							<!--<li><a class="dropdown-item" href="#">Configurações</a></li>-->
 							<li><a href="<?=base_url('Login/logout')?>" class="dropdown-item" href="#">Sair</a></li>
 						</ul>
@@ -298,7 +300,9 @@
 <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
 <!--  Google Maps Plugin    -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-<script src="<?=base_url('assets/material-kit/assets/js/material-kit.min.js?v=3.0.4')?>" type="text/javascript"></script>
+<script src="<?=base_url('assets/material-kit/assets/js/material-kit.min.js?v=3.0.4')?>" type="text/javascript">
+
+</script>
 </body>
 
 </html>
