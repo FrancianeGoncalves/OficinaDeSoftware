@@ -41,4 +41,8 @@ class MY_Controller extends CI_Controller
 		$this->session->sess_destroy();// acaba a sessão
 	}
 
+	public function verificarLoginAdm(){
+		$this->verificarLogin();
+	}
+
 }
