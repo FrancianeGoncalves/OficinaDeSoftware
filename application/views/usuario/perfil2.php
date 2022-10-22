@@ -21,6 +21,7 @@
 	<!-- CSS Files -->
 	<link id="pagestyle" href="<?=base_url('assets/material-kit/assets/css/material-kit.css?v=3.0.4')?>" rel="stylesheet" />
 	<script src="<?=base_url('assets/sweetalert2/dist/sweetalert2.all.js')?>"></script>
+	<link href="<?= base_url('assets/croppie/croppie.min.css?v=2') ?>" rel="stylesheet"/>
 	<style>
 		a:hover{
 			color: #FF480C !important;
@@ -37,6 +38,7 @@
 </head>
 
 <body class="blog-author bg-gray-200">
+<input type="hidden" id="urlBase" value="<?=base_url()?>">
 <!-- Navbar Transparent -->
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
 	<div class="container">
@@ -105,39 +107,90 @@
 			<div class="row">
 				<div class="col-12 mx-auto">
 					<div class="mt-n8 mt-md-n9 text-center">
+						<?php
+						if(isset($usuario->avatar)):?>
+						<img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="<?=$usuario->avatar?>" alt="bruce" loading="lazy">
+						<?php else:?>
 						<img class="avatar avatar-xxl shadow-xl position-relative z-index-2" src="<?=base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg')?>" alt="bruce" loading="lazy">
+						<?php endif;?>
 					</div>
-					<div class="row py-5">
-						<div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
-							<div class="d-flex justify-content-between align-items-center mb-2">
-								<h3 class="mb-0">Michael Roven</h3>
-								<div class="d-block">
-									<button type="button" class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</button>
-								</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<h3 class="mb-5"><?=$usuario->nome_usuario?></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-sm-6">
+							<div class="input-group input-group-static mb-4">
+								<label>CPF</label>
+								<input class="form-control cpf" placeholder="Digite o cpf" type="text"
+									   name="cpf" id="cpf" readonly
+									   value="<?=$usuario->cpf?>">
 							</div>
-							<div class="row mb-4">
-								<div class="col-auto">
-									<span class="h6">323</span>
-									<span>Posts</span>
-								</div>
-								<div class="col-auto">
-									<span class="h6">3.5k</span>
-									<span>Followers</span>
-								</div>
-								<div class="col-auto">
-									<span class="h6">260</span>
-									<span>Following</span>
-								</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="input-group input-group-static mb-4">
+								<label>Nome</label>
+								<input class="form-control nome" placeholder="Digite o nome" type="text"
+									   name="nome" id="nome" required
+									   value="<?=$usuario->nome?>">
 							</div>
-							<p class="text-lg mb-0">
-								Decisions: If you can’t decide, the answer is no.
-								If two equally difficult paths, choose the one more
-								painful in the short term (pain avoidance is creating
-								an illusion of equality). Choose the path that leaves
-								you more equanimous. <br><a href="javascript:;" class="text-info icon-move-right">More about me
-									<i class="fas fa-arrow-right text-sm ms-1"></i>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="input-group input-group-static mb-4">
+								<label>Nome de Usuário</label>
+								<input class="form-control nome_usuario" placeholder="Digite um nome de usuário"
+									   type="text"
+									   name="nome_usuario" id="nome_usuario"
+									   value="<?=$usuario->nome_usuario?>" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-sm-6">
+							<div class="input-group input-group-static mb-4">
+								<label>E-mail</label>
+								<input class="form-control email" placeholder="Digite o email" type="email"
+									   name="email" id="email" required
+									   value="<?=$usuario->email?>" >
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="input-group input-group-static mb-4">
+								<label>Senha</label>
+								<input type="password" class="form-control" name="senha" id="senha"
+									   value="<?=$usuario->senha?>" required placeholder="Digite a senha">
+							</div>
+						</div>
+						<div class="col-lg-4 col-sm-6">
+							<div class="input-group input-group-static mb-4">
+								<label>Confirme a Senha</label>
+								<input type="password" class="form-control" name="senha_confirmar"
+									   id="senha_confirmar" required placeholder="Digite a senha novamente">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2 col-sm-6" id="divAvatar">
+							<button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2"
+									id="editarAvatar">
+								<i class="fa fa-camera"></i>
+								Editar Imagem</button>
+						</div>
+						<div class="col-lg-8 col-sm-6">
+
+						</div>
+						<div class="col-lg-2 col-sm-6">
+							<div class="text-center" id="editarUsuarioDiv">
+								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2"
+										id="editarUsuario">Salvar</button>
+								<a class="nav-link nav-link-icon me-2" id="deletar_usuario">
+									<i class="fa fa-trash"></i>
+									<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+									   data-bs-placement="bottom"
+									>Deletar conta</p>
 								</a>
-							</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -150,84 +203,92 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<h3 class="mb-5">Check my latest blogposts</h3>
+					<h3 class="mb-5">Receitas:</h3>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="card card-plain">
-						<div class="card-header p-0 position-relative">
-							<a class="d-block blur-shadow-image">
-								<img src="../assets/img/examples/testimonial-6-2.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
-							</a>
-						</div>
-						<div class="card-body px-0">
-							<h5>
-								<a href="javascript:;" class="text-dark font-weight-bold">Rover raised $65 million</a>
-							</h5>
-							<p>
-								Finding temporary housing for your dog should be as easy as
-								renting an Airbnb. That’s the idea behind Rover ...
-							</p>
-							<a href="javascript:;" class="text-info text-sm icon-move-right">Read More
-								<i class="fas fa-arrow-right text-xs ms-1"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="card card-plain">
-						<div class="card-header p-0 position-relative">
-							<a class="d-block blur-shadow-image">
-								<img src="../assets/img/examples/testimonial-6-3.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
-							</a>
-						</div>
-						<div class="card-body px-0">
-							<h5>
-								<a href="javascript:;" class="text-dark font-weight-bold">MateLabs machine learning</a>
-							</h5>
-							<p>
-								If you’ve ever wanted to train a machine learning model
-								and integrate it with IFTTT, you now can with ...
-							</p>
-							<a href="javascript:;" class="text-info text-sm icon-move-right">Read More
-								<i class="fas fa-arrow-right text-xs ms-1"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="card card-plain">
-						<div class="card-header p-0 position-relative">
-							<a class="d-block blur-shadow-image">
-								<img src="../assets/img/examples/blog-9-4.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
-							</a>
-						</div>
-						<div class="card-body px-0">
-							<h5>
-								<a href="javascript:;" class="text-dark font-weight-bold">MateLabs machine learning</a>
-							</h5>
-							<p>
-								If you’ve ever wanted to train a machine learning model
-								and integrate it with IFTTT, you now can with ...
-							</p>
-							<a href="javascript:;" class="text-info text-sm icon-move-right">Read More
-								<i class="fas fa-arrow-right text-xs ms-1"></i>
-							</a>
-						</div>
-					</div>
-				</div>
 				<div class="col-lg-3 col-md-12 col-12">
 					<div class="card card-blog card-background cursor-pointer">
-						<div class="full-background" style="background-image: url('../assets/img/examples/blog2.jpg')" loading="lazy"></div>
+						<div class="full-background" style="background-image: url('<?=base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg')?>')" loading="lazy"></div>
 						<div class="card-body">
 							<div class="content-left text-start my-auto py-4">
-								<h2 class="card-title text-white">Flexible work hours</h2>
-								<p class="card-description text-white">Rather than worrying about switching offices every couple years, you stay in the same place.</p>
-								<a href="javascript:;" class="text-white text-sm icon-move-right">Read More
+								<h2 class="card-title text-white">Cadastre Novas Receitas</h2>
+								<p class="card-description text-white">Colabore para que todos os usuários encontre receitas
+									com os ingredientes que possuem.</p>
+								<a href="javascript:;" class="text-white text-sm icon-move-right">Leia Mais
 									<i class="fas fa-arrow-right text-xs ms-1"></i>
 								</a>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="card card-plain">
+						<div class="card-header p-0 position-relative">
+							<a class="d-block blur-shadow-image">
+								<img src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1018774879-receitasparacriancas-paodequeijo.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
+							</a>
+						</div>
+						<div class="card-body px-0">
+							<h5>
+								<a href="javascript:;" class="text-dark font-weight-bold">Pão de Queijo</a>
+							</h5>
+							<p>
+								500 g de polvilho doce<br>
+								1 ou 2 ovos<br>
+								250 ml de leite integral<br>
+								1/2 copo de óleo<br>
+								1 colher/sopa rasa de sal...<br>
+							</p>
+							<a href="javascript:;" class="text-info text-sm icon-move-right">Ler Mais
+								<i class="fas fa-arrow-right text-xs ms-1"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="card card-plain">
+						<div class="card-header p-0 position-relative">
+							<a class="d-block blur-shadow-image">
+								<img src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1992932943-receitasparacriancas-cachorroquente.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
+							</a>
+						</div>
+						<div class="card-body px-0">
+							<h5>
+								<a href="javascript:;" class="text-dark font-weight-bold">Cachorro quente no espeto</a>
+							</h5>
+							<p>
+								25 salsichas<br>
+								25 palitos de churrasco<br>
+								1 rolo de massa de pastel (500g)<br>
+								1 clara para pincelar<br>
+								Óleo para fritar...<br>
+							</p>
+							<a href="javascript:;" class="text-info text-sm icon-move-right">Ler Mais
+								<i class="fas fa-arrow-right text-xs ms-1"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="card card-plain">
+						<div class="card-header p-0 position-relative">
+							<a class="d-block blur-shadow-image">
+								<img src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/456309814-receitasparacriancas-batata.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy">
+							</a>
+						</div>
+						<div class="card-body px-0">
+							<h5>
+								<a href="javascript:;" class="text-dark font-weight-bold">Batata Frita</a>
+							</h5>
+							<p>
+								Batatas (quantidade a gosto) cortadas em palitos<br>
+								1 frigideira com óleo o sufisciente para cobrir as batatas<br>
+								1/2 colher (sopa) de amido de milho...<br>
+							</p>
+							<a href="javascript:;" class="text-info text-sm icon-move-right">Ler Mais
+								<i class="fas fa-arrow-right text-xs ms-1"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -241,55 +302,58 @@
 	<div class="container z-index-1 position-relative">
 		<div class="row">
 			<div class="col-lg-4 me-auto mb-lg-0 mb-4 text-lg-start text-center">
-				<h6 class="text-dark font-weight-bolder text-uppercase mb-lg-4 mb-3">Material Design</h6>
-				<ul class="nav flex-row ms-n3 justify-content-lg-start justify-content-center mb-4 mt-sm-0">
-					<li class="nav-item">
-						<a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com" target="_blank">
-							Home
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com/presentation" target="_blank">
-							About
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com/blog" target="_blank">
-							Blog
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark opacity-8" href="https://www.creative-tim.com" target="_blank">
-							Services
-						</a>
-					</li>
-				</ul>
-				<p class="text-sm text-dark opacity-8 mb-0">
-					Copyright © <script>
-						document.write(new Date().getFullYear())
-					</script> Material Design by Creative Tim.
-				</p>
 			</div>
 			<div class="col-lg-6 ms-auto text-lg-end text-center">
-				<p class="mb-5 text-lg text-dark font-weight-bold">
-					The reward for getting on the stage is fame. The price of fame is you can’t get off the stage.
+				<p class="text-sm text-dark opacity-8 mb-0">
+					FFHL © <script>
+						document.write(new Date().getFullYear())
+					</script> Desenolvido por Franciane, Francisco, Hugo e Luan.
 				</p>
-				<a href="javascript:;" target="_blank" class="text-dark me-xl-4 me-4 opacity-5">
-					<span class="fab fa-dribbble"></span>
-				</a>
-				<a href="javascript:;" target="_blank" class="text-dark me-xl-4 me-4 opacity-5">
-					<span class="fab fa-twitter"></span>
-				</a>
-				<a href="javascript:;" target="_blank" class="text-dark me-xl-4 me-4 opacity-5">
-					<span class="fab fa-pinterest"></span>
-				</a>
-				<a href="javascript:;" target="_blank" class="text-dark opacity-5">
-					<span class="fab fa-github"></span>
-				</a>
 			</div>
 		</div>
 	</div>
 </footer>
+<!-- Modal -->
+<div class="modal fade" id="modalAvatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Avatar</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<input type="hidden" id="cpf" name="cpf" value="<?=$usuario->cpf?>">
+				<div class="row">
+					<div class="col-md-12">
+						<div id="uploadCroppieUser"></div>
+					</div>
+				</div>
+				<div class="row">
+					<form method="POST" id="formImgHeader"  enctype="multipart/form-data">
+						<div class="input-group">
+							<input type="file" class="form-control imagePerfilUser" id="inputGroupFile04"
+								   aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+								   name="arquivoImg" required="Campo Obrigatorio">
+						</div>
+						<small>Arquivos aceitos: png ou jpeg</small>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<?php if($usuario->avatar):?>
+					<button type="button" class="btn bg-gradient-warning apagarAvatar" id="apagarAvatar">
+						Apagar Avatar Atual</button>
+				<?php endif;?>
+				<button type="button" class="btn bg-gradient-success saveAvatar" id="saveAvatar">
+					Salvar</button>
+				<button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- -------- END FOOTER 5 w/ DARK BACKGROUND ------- -->
 <!--   Core JS Files   -->
 <script src="<?=base_url('assets/material-kit/assets/js/core/popper.min.js" type="text/javascript')?>"></script>
@@ -304,5 +368,7 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 <script src="<?=base_url('assets/js/cpf.js')?>" type="text/javascript"></script>
-<script src="<?=base_url('assets/js/perfil.js')?>" type="text/javascript"></script></body>
+<script src="<?=base_url('assets/js/perfil.js')?>" type="text/javascript"></script>
+<script src="<?= base_url('assets/croppie/croppie.js?v=3') ?>"></script>
+<script src="<?=base_url('assets/js/croppie.js')?>" type="text/javascript"></script></body>
 </html>

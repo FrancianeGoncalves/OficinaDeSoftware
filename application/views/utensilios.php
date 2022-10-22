@@ -140,7 +140,7 @@
 				<div class="col-12 mx-auto">
 					<div class="mt-n8 mt-md-n9 text-center">
 						<img class="avatar avatar-xxl shadow-xl position-relative z-index-2"
-							 src="<?=base_url('assets/img/ingredientesa.jpg')?>" alt="bruce" loading="lazy">
+							 src="<?=base_url('assets/img/utensilios.jpg')?>" alt="bruce" loading="lazy">
 					</div>
 				</div>
 			</div>

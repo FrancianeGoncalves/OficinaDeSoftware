@@ -1,7 +1,7 @@
 (function ($) {
+	var url = $("#urlBase").val();
 	function deletar_usuario() {
 		$('#deletar_usuario').on('click', function (event) {
-			//debugger;
 			Swal.fire({
 				title: 'Tem Certeza que deseja Apagar sua Conta?',
 				icon: 'warning',
@@ -24,10 +24,9 @@
 						cancelButtonText: 'Cancelar',
 						preConfirm: (textConfirm) => {
 							if(textConfirm == "Desejo apagar minha conta"){
-								let base = $("#urlBase").val();
 								$.ajax({
 									type: "POST",
-									url: base+"Usuario/deletar",
+									url: url+"Usuario/deletar",
 									dataType: "text",
 									cache: false,
 									success: function (data) {
@@ -57,8 +56,94 @@
 		});
 	}
 
+	function editarUsuario(){
+		$('div#editarUsuarioDiv').on('click', 'button#editarUsuario', function() {
+			let cpf = $("#cpf").val();
+			let nome = $("#nome").val();
+			let nome_usuario = $("#nome_usuario").val();
+			let email = $("#email").val();
+			let senha = $("#senha").val();
+			let senha_confirmar = $("#senha_confirmar").val();
+			var form = new FormData();
+			form.append('nome', nome);
+			form.append('cpf', cpf);
+			form.append('nome_usuario', nome_usuario);
+			form.append('email', email);
+			form.append('senha', senha);
+			form.append('senha_confirmar', senha_confirmar);
+			let error = verificarForm(form);
+			if(error){
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Favor preencha todos os campos!'
+				});
+			}else{
+				$.ajax({
+					url: url+'Usuario/editar',
+					data: form,
+					cache: false,
+					contentType: false,
+					processData: false,
+					type: 'POST',
+					success: function (result, status) {
+						let dados = JSON.parse(result);
+						debugger;
+						if(dados.error){
+							let erros = dados.error.replaceAll('<p>','').replaceAll('</p>','').replaceAll('\n','<br>');
+							Swal.fire({
+								icon: 'warning',
+								title: 'Ops...',
+								html: erros
+							});
+						}else{
+							Swal.fire({
+								title: 'Usuário editado!',
+								icon: 'success',
+								// confirmButtonColor: '#1A73E8',
+								confirmButtonText: 'OK'
+							}).then((result) => {
+								location.reload();
+							});
+						}
+					},
+					error: function (xhr, ajaxOptions, thrownError) {
+						Swal.fire({
+							icon: 'warning',
+							title: 'Ocorreu um Problema',
+							text: 'Entre em contato com o Suporte para verificar o problema'
+						});
+					},
+				});
+			}
+		});
+	}
+
+	function editarAvatar(){
+		$('div#divAvatar').on('click', 'button#editarAvatar', function() {
+			$('#modalAvatar').modal('show');
+		});
+	}
+
+	/**
+	 *
+	 * @param form
+	 * @returns {boolean}
+	 */
+	function verificarForm(form)
+	{
+		for (var value of form.values()) {
+			if(value == undefined || value == '' || value == 'null' || value == 'undefined'){
+				return  true;
+			}
+		}
+		return false;
+	}
+
 	function init(){
 		deletar_usuario();
+		editarUsuario();
+		editarAvatar();
 	}
 
 	init();

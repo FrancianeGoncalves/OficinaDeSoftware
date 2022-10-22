@@ -161,7 +161,6 @@
 												<h5 class="card-text fa fa-users opacity-6 col-3"> 5</h5>
 												<h5 class="card-text fa fa-clock opacity-6 col-3"> 30m</h5>
 												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.8</h5>
-
 											</div>
 
 										</div>

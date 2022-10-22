@@ -25,8 +25,9 @@ class MY_Controller extends CI_Controller
 		$this->session->set_userdata("nome", $usuario->nome);
 		$this->session->set_userdata("nome_usuario", $usuario->nome_usuario);
 		$this->session->set_userdata("email", $usuario->email);
-		//$this->session->set_userdata("tipo", $usuario->tipo);
+		$this->session->set_userdata("tipo", $usuario->tipo);
 		$this->session->set_userdata("idUsuario", $usuario->cpf);
+		$this->session->set_userdata("avatar", $usuario->avatar);
 	}
 
 	public function setMsgFlash($msg,$type = 'validada'){

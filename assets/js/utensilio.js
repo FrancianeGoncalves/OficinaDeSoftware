@@ -154,11 +154,11 @@
 					type: 'POST',
 					success: function (result, status) {
 						let dados = JSON.parse(result);
-						if(result.error){
+						if(dados.error){
 							Swal.fire({
 								icon: 'warning',
 								title: 'Ocorreu um Problema',
-								text: result.error
+								text: dados.error
 							});
 						}else{
 							Swal.fire({

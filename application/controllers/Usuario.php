@@ -72,7 +72,7 @@ class Usuario extends MY_Controller
 		try
 		{
 			$this->form_validation->set_rules('cpf', 'Cpf', 'required|is_unique[usuario.cpf]');
-			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[usuario.email]');
+			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[usuario.email]|valid_email');
 			$validation = $this->validationForm();
 			if($validation == FALSE)
 			{
@@ -98,16 +98,16 @@ class Usuario extends MY_Controller
 		{
 			if($this->input->post('email') == $this->session->userdata('email'))
 			{
-				$this->form_validation->set_rules('email', 'Email', 'required');
+				$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			}else
 			{
-				$this->form_validation->set_rules('email', 'Email', 'required|is_unique[usuario.email]');
+				$this->form_validation->set_rules('email', 'Email', 'required|is_unique[usuario.email]|valid_email');
 			}
 			$validation = $this->validationForm();
 			if($validation == FALSE)
 			{
 				$this->setMsgFlash(validation_errors(),'naovalidada');
-				redirect(base_url('Usuario/perfil/'));
+				echo json_encode(array("error"=>validation_errors()));
 			}else
 			{
 				$usuario = $this->setArray();
@@ -115,11 +115,11 @@ class Usuario extends MY_Controller
 				$this->verificarLogin();
 				$usuario = $this->MUsuario->geByCpf($usuario['cpf']);
 				$this->setUsuarioSession($usuario);
-				redirect(base_url('Usuario/perfil'));
+				echo json_encode(array("error"=>false));
 			}
 		}catch (Exception $e) 
 		{
-			$dados['erro'] = "";
+			echo json_encode("Erro ao editar usuário");
 		}
 	}
 
@@ -172,5 +172,23 @@ class Usuario extends MY_Controller
 	{
 		$this->MUsuario->excluir();
 		$this->clearSession();
+	}
+
+	public function upload_imagem_croppie($cpf = null)
+	{
+		$cpf = $cpf == null ?$this->session->userdata('idUsuario'):$cpf;
+		$usuario = array("avatar"=>$this->input->post('image'));
+		$this->MUsuario->editar($usuario);
+		$usuario = $this->MUsuario->geByCpf($cpf);
+		$this->setUsuarioSession($usuario);
+	}
+
+	public function apagarImagem($cpf = null)
+	{
+		$cpf = $cpf == null ?$this->session->userdata('idUsuario'):$cpf;
+		$usuario = array("avatar"=>null);
+		$this->MUsuario->editar($usuario);
+		$usuario = $this->MUsuario->geByCpf(($cpf));
+		$this->setUsuarioSession($usuario);
 	}
 }
