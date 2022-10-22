@@ -36,7 +36,7 @@
 											confirmButtonColor: '#50a5f1',
 											confirmButtonText: 'OK'
 										}).then((result) => {
-											window.location = base;
+											window.location = url;
 										});
 									}
 								});
