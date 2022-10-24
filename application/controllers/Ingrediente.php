@@ -22,6 +22,7 @@ class Ingrediente extends MY_Controller
 	 */
 	public function index()
 	{
+		$this->verificarLoginAdm();
 		$ingredientes = $this->MIngrediente->getAll();
 		$this->load->view('ingredientes',array("ingredientes"=>$ingredientes));
 	}

@@ -22,6 +22,7 @@ class Utensilio extends MY_Controller
 	 */
 	public function index()
 	{
+		$this->verificarLoginAdm();
 		$utensilios = $this->MUtensilio->getAll();
 		$this->load->view('utensilios',array("utensilios"=>$utensilios));
 	}

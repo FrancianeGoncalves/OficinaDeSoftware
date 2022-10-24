@@ -44,6 +44,9 @@ class MY_Controller extends CI_Controller
 
 	public function verificarLoginAdm(){
 		$this->verificarLogin();
+		if(intval($this->session->userdata('tipo')) != 1){
+			redirect(base_url());
+		}
 	}
 
 }

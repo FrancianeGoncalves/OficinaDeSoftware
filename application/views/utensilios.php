@@ -116,7 +116,12 @@
 						<li><a href="<?=base_url()?>" class="dropdown-item" href="#">Home</a></li>
 							<li><a href="<?=base_url('Usuario/perfil')?>" class="dropdown-item"
 								   href="#">Perfil</a></li>
-								   <li><a href="<?=base_url('Ingrediente')?>" class="dropdown-item" href="#">Gerenciar Ingredientes</a></li>							<li><a href="<?=base_url('Login/logout')?>" class="dropdown-item"
+							<?php if(intval($this->session->userdata('tipo')) == 1):?>
+								<li><a href="<?=base_url('Ingrediente')?>" class="dropdown-item" href="#">Gerenciar Ingredientes</a></li>
+<!--								<li><a href="--><?//=base_url('Utensilio')?><!--" class="dropdown-item" href="#">Gerenciar Utensílios</a></li>-->
+							<?php endif;?>
+<!--								   <li><a href="--><?//=base_url('Ingrediente')?><!--" class="dropdown-item" href="#">Gerenciar Ingredientes</a></li>						-->
+							<li><a href="<?=base_url('Login/logout')?>" class="dropdown-item"
 								   href="#">Sair</a></li>
 						</ul>
 					</div>
