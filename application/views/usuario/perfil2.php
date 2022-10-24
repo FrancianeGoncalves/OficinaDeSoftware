@@ -83,8 +83,8 @@
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<li><a href="<?=base_url()?>" class="dropdown-item" href="#">Home</a></li>
-							<li><a href="<?=base_url('Ingrediente')?>" class="dropdown-item" href="#">Gerenciar Ingredientes</a></li>
-							<li><a href="<?=base_url('Utensilio')?>" class="dropdown-item" href="#">Gerenciar Utensílios</a></li>
+							<li><a href="<?=base_url('Ingrediente')?>" class="dropdown-item" href="#">Ingredientes</a></li>
+							<li><a href="<?=base_url('Utensilio')?>" class="dropdown-item" href="#">Utensílios</a></li>
 							<!--<li><a class="dropdown-item" href="#">Configurações</a></li>-->
 							<li><a href="<?=base_url('Login/logout')?>" class="dropdown-item" href="#">Sair</a></li>
 						</ul>
