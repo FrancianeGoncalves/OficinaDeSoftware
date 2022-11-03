@@ -24,64 +24,61 @@
 </head>
 
 <body class="sign-in-basic">
-<!-- Navbar Transparent -->
-<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
-	<div class="container">
-		<a class="navbar-brand  text-white " href="https://demos.creative-tim.com/material-kit/presentation" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-			<i class="fa-solid fa-pot-food"></i>
-		</a>
-		<button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon mt-2">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </span>
-		</button>
-		<div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
-			<ul class="navbar-nav navbar-nav-hover ms-auto">
-				<?php if(intval($this->session->userdata('login')) != 1):?>
-				<li class="nav-item ms-lg-auto">
-					<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
-						<i class="fa fa-user-plus me-1"></i>
-						<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-						   data-bs-placement="bottom"
-						>Cadastre-se</p>
+
+<!-- Navbar -->
+<div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
+			<nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+				<div class="container-fluid">
+					<a class="navbar-brand font-weight-bolder ms-sm-3" href="https://demos.creative-tim.com/material-kit/presentation" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+					O que tem pra hoje?
 					</a>
-				</li>
-				<li class="nav-item my-auto ms-3 ms-lg-0">
-					<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
-				</li>
-				<?php else:?>
-					<!--<li class="nav-item my-auto ms-3 ms-lg-0">
-						<a href="<?=base_url('Usuario/perfil')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">
-							<i class="fa fa-user me-1"></i>
-							Perfil</a>
-					</li>
-					<li class="nav-item my-auto ms-3 ms-lg-0">
-						<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">
-							<i class="fa fa-trash me-1"></i>
-							Sair</a>
-					</li>-->
-					<div class="dropdown">
-						<button class="btn bg-gradient-warning dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-						HOME
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<li><a href="<?=base_url('Usuario/perfil')?>" class="dropdown-item" href="#">Perfil</a></li>
-							<?php if(intval($this->session->userdata('tipo')) == 1):?>
-							<li><a href="<?=base_url('Ingrediente')?>" class="dropdown-item" href="#">Gerenciar Ingredientes</a></li>
-							<li><a href="<?=base_url('Utensilio')?>" class="dropdown-item" href="#">Gerenciar Utensílios</a></li>
-							<?php endif;?>
-							<!--<li><a class="dropdown-item" href="#">Configurações</a></li>-->
-							<li><a href="<?=base_url('Login/logout')?>" class="dropdown-item" href="#">Sair</a></li>
+					<button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon mt-2">
+						<span class="navbar-toggler-bar bar1"></span>
+						<span class="navbar-toggler-bar bar2"></span>
+						<span class="navbar-toggler-bar bar3"></span>
+						</span>
+					</button>
+					<div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+						<ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+							<?php if(intval($this->session->userdata('login')) != 1):?>
+								<li class="nav-item ms-lg-auto">
+									<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
+									<i class="fa fa-user-plus me-1"></i>
+										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										>Cadastre-se</p>
+									</a>
+								</li>
+								<li class="nav-item my-auto ms-3 ms-lg-0">
+									<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
+								</li>
+							<?php else:?>
+								<li class="nav-item dropdown dropdown-hover mx-2">
+									<a href="<?=base_url('Ingrediente')?>"class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+									Gerenciar Ingredientes
+									</a>
+								</li>
+
+								<li class="nav-item dropdown dropdown-hover mx-2">
+									<a href="<?=base_url('Utensilio')?>" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
+									Gerenciar Utensílios
+									</a>
+								</li>
+								<li class="nav-item ms-lg-auto">
+									<a href="<?=base_url('Usuario/perfil')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Acessar Perfil</a>
+								</li>
+								<li class="nav-item my-auto ms-3 ms-lg-0">
+									<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Sair</a>
+								</li>
+							<?php endif;?>				
 						</ul>
 					</div>
-				<?php endif;?>
-			</ul>
-		</div>
-	</div>
-</nav>
-<!-- End Navbar -->
+
+				</div>
+			</nav>
+		<!-- End Navbar -->
+		</div></div></div>
 <div class="page-header align-items-start min-vh-100 " background_attachment ="scroll" style="background-image: url('<?=base_url('assets/img/fundo2.png')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
