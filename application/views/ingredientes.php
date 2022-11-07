@@ -131,7 +131,7 @@
 <!-- End Navbar -->
 <!-- -------- START HEADER 4 w/ search book a ticket form ------- -->
 <header>
-	<div class="page-header min-height-400" style="background-image: url(<?=base_url('assets/img/fundo2.png')?>);" loading="lazy">
+	<div class="page-header min-height-400" style="background-image: url(<?=base_url('https://enmicasa.com/wp-content/uploads/2013/04/22-ingredientes-2.jpg')?>);" loading="lazy">
 		<span class="mask bg-gradient-dark opacity-8"></span>
 	</div>
 </header>
