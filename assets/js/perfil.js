@@ -88,7 +88,6 @@
 					type: 'POST',
 					success: function (result, status) {
 						let dados = JSON.parse(result);
-						debugger;
 						if(dados.error){
 							let erros = dados.error.replaceAll('<p>','').replaceAll('</p>','').replaceAll('\n','<br>');
 							Swal.fire({

@@ -133,8 +133,7 @@
 <!-- End Navbar -->
 <!-- -------- START HEADER 4 w/ search book a ticket form ------- -->
 <header>
-	<div class="page-header min-height-400" style="background-image: url(<?=base_url('https://lacocinadediana.com/wp-content/uploads/2021/04/Utensilios-De-Cocina-2.jpg
-https://static2.abc.es/media/bienestar/2021/02/11/utensilios-cocina-1-kEKE--1200x630@abc.jpg')?>);" loading="lazy">
+	<div class="page-header min-height-400" style="background-image: url(<?=base_url('assets/img/ingredientes.jpg')?>);" loading="lazy">
 		<span class="mask bg-gradient-dark opacity-8"></span>
 	</div>
 </header>

@@ -11,12 +11,12 @@
 					className: 'btn btn-warning btnWarning',
 					text: '<span class="btn-inner--icon "><i class="fa fa-plus"></i></span>',
 					action: function ( e, dt, node, config ) {
-						modalAddIngrediente();
+						modalAddReceita();
 					}
 				}
 			],
 			"language": {
-				sEmptyTable: "Nenhum ingrediente encontrado",
+				sEmptyTable: "Nenhuma Receita encontrada",
 				sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
 				sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
 				sInfoFiltered: "(Filtrados de _MAX_ registros)",
@@ -25,7 +25,7 @@
 				sLengthMenu: "_MENU_ resultados por página",
 				sLoadingRecords: "Carregando...",
 				sProcessing: "Processando...",
-				sZeroRecords: "Nenhum ingrediente encontrado",
+				sZeroRecords: "Nenhuma Receita encontrada",
 				sSearch: "Pesquisar",
 				oPaginate: {
 					sNext: ">",
@@ -51,36 +51,15 @@
 
 	});
 
-	function modalAddIngrediente(){
-		document.getElementById('editarIngrediente').style.display = "none";
-		document.getElementById('saveIngrediente').style.display = "block";
-		$('#addIngredienteModal [name="nome_ingrediente"]').val("");
-		$('#addIngredienteModal [name="obs_ingrediente"]').val("");
-		$('#addIngredienteModal [name="idingrediente"]').val("");
+	function modalAddReceita(){
+		$('#addReceitaModal [name="nome_receita"]').val("");
 		$('#divNome').removeClass('is-focused');
-		$('#divObs').removeClass('is-focused');
-		$("#exampleModalLabel").html("Novo Ingrediente");
-		$('#addIngredienteModal').modal('show');
+		$('#addReceitaModal').modal('show');
 	}
-
-	function modalEditarIngrediente(){
-		$('td').on('click', 'a.bntEditarIngrediente', function() {
-			document.getElementById('editarIngrediente').style.display = "block";
-			document.getElementById('saveIngrediente').style.display = "none";
-			$('#addIngredienteModal [name="nome_ingrediente"]').val($(this).attr("data-nome"));
-			$('#addIngredienteModal [name="obs_ingrediente"]').val($(this).attr("data-obs"));
-			$('#addIngredienteModal [name="idingrediente"]').val($(this).attr("data-id"));
-			$('#divNome').addClass('is-focused');
-			$('#divObs').addClass('is-focused');
-			$("#exampleModalLabel").html("Editar Ingrediente");
-			$('#addIngredienteModal').modal('show');
-		});
-	}
-
-	function addIngrediente(){
-		$('div.modal-footer').on('click', 'button.saveIngrediente', function() {
-			let nome = $("#nome_ingrediente").val();
-			let obs = $("#obs_ingrediente").val();
+	
+	function saveReceita(){
+		$('div.modal-footer').on('click', 'button.saveReceita', function() {
+			let nome = $("#nome_receita").val();
 			if(nome == null || nome == "" || nome == undefined){
 				Swal.fire({
 					icon: 'error',
@@ -90,9 +69,8 @@
 			}else{
 				var form = new FormData();
 				form.append('nome', nome);
-				form.append('observacao', obs);
 				$.ajax({
-					url: url+'Ingrediente/salvar',
+					url: url+'Receita/salvar',
 					data: form,
 					cache: false,
 					contentType: false,
@@ -108,12 +86,12 @@
 							});
 						}else{
 							Swal.fire({
-								title: 'Ingrediente salvo!',
+								title: 'Receita salva!',
 								icon: 'success',
 								// confirmButtonColor: '#1A73E8',
 								confirmButtonText: 'OK'
 							}).then((result) => {
-								location.reload();
+								window.location.href = url + "Receita/receita/"+dados.success;
 							});
 						}
 					},
@@ -228,7 +206,7 @@
 	}
 
 	function init(){
-		addIngrediente();
+		saveReceita();
 		editarIngrediente();
 		apagar();
 		modalEditarIngrediente();

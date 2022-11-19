@@ -59,10 +59,14 @@
 									Gerenciar Ingredientes
 									</a>
 								</li>
-
 								<li class="nav-item dropdown dropdown-hover mx-2">
 									<a href="<?=base_url('Utensilio')?>" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
 									Gerenciar Utensílios
+									</a>
+								</li>
+								<li class="nav-item dropdown dropdown-hover mx-2">
+									<a href="<?=base_url('Receita')?>" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
+									Gerenciar Receitas
 									</a>
 								</li>
 								<li class="nav-item ms-lg-auto">

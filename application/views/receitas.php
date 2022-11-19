@@ -113,7 +113,7 @@
 							HOME
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<li><a href="<?=base_url()?>" class="dropdown-item" href="#">Home</a></li>
+							<li><a href="<?=base_url()?>" class="dropdown-item" href="#">Home</a></li>
 							<li><a href="<?=base_url('Usuario/perfil')?>" class="dropdown-item"
 								   href="#">Perfil</a></li>
 							<?php if(intval($this->session->userdata('tipo')) == 1):?>
@@ -144,7 +144,7 @@
 				<div class="col-12 mx-auto">
 					<div class="mt-n8 mt-md-n9 text-center">
 						<img class="avatar avatar-xxl shadow-xl position-relative z-index-2"
-							 src="<?=base_url('assets/img/ingredientesa.jpg')?>" alt="bruce" loading="lazy">
+							 src="<?=base_url('assets/img/cook-book-icon.jpg')?>" alt="bruce" loading="lazy">
 					</div>
 				</div>
 			</div>
@@ -153,7 +153,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6">
-						<h3 class="mb-5">Ingredientes</h3>
+						<h3 class="mb-5">Receitas</h3>
 					</div>
 				</div>
 				<div class="row">
@@ -167,32 +167,34 @@
 							</tr>
 							</thead>
 							<tbody>
-							<?php foreach ($ingredientes as $ingrediente):?>
-							<tr>
-								<td>
-									<p class="text-xs font-weight-bold mb-0"><?=$ingrediente->nome?></p>
+							<?php foreach ($receitas as $receita):?>
+								<tr>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$receita->nome?></p>
 
-								</td>
-								<td>
-									<p class="text-xs font-weight-bold mb-0"><?=$ingrediente->observacao?></p>
-								</td>
-								<td>
-									<a id="apagarIngrediente" data-id="<?=$ingrediente->idingrediente?>">
-										<button type="button" class="btn bg-gradient-danger"
-												title="Deletar Ingrediente">
-											<i class="fa fa-trash"></i>
-										</button>
-									</a>
-									<a id="bntEditarIngrediente" class="bntEditarIngrediente"
-									   data-id="<?=$ingrediente->idingrediente?>"
-									   data-nome="<?=$ingrediente->nome?>"
-									   data-obs="<?=$ingrediente->observacao?>">
-										<button type="button" class="btn bg-gradient-info" title="Editar Ingrediente">
-											<i class="fa fa-pencil"></i>
-										</button>
-									</a>
-								</td>
-							</tr>
+									</td>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$receita->rendimento?></p>
+									</td>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$receita->tempo?></p>
+									</td>
+									<td>
+										<a id="apagarIngrediente" data-id="<?=$receita->idreceita?>">
+											<button type="button" class="btn bg-gradient-danger"
+													title="Deletar Ingrediente">
+												<i class="fa fa-trash"></i>
+											</button>
+										</a>
+										<a id="bntEditarIngrediente" class="bntEditarIngrediente"
+										   data-id="<?=$receita->idreceita?>"
+										  >
+											<button type="button" class="btn bg-gradient-info" title="Editar Ingrediente">
+												<i class="fa fa-pencil"></i>
+											</button>
+										</a>
+									</td>
+								</tr>
 							<?php endforeach;?>
 							</tbody>
 						</table>
@@ -220,36 +222,26 @@
 	</div>
 </footer>
 <!-- Modal -->
-<div class="modal fade" id="addIngredienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="addReceitaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	 aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"></h5>
+				<h5 class="modal-title" id="exampleModalLabel">Adicionar Receita</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<input type="hidden" id="idingrediente" name="idingrediente">
 				<div class="row">
 					<div class="input-group input-group-static my-3" id="divNome">
 						<label class="form-label requiredInput">Nome</label>
-						<input type="text" class="form-control nome" name="nome_ingrediente" id="nome_ingrediente">
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-group input-group-static my-3" id="divObs">
-						<label class="form-label">Observação</label>
-						<input type="text" class="form-control obs_ingrediente"
-							   name="obs_ingrediente" id="obs_ingrediente">
+						<input type="text" class="form-control nome" name="nome_receita" id="nome_receita">
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn bg-gradient-success saveIngrediente" id="saveIngrediente">
-					Salvar</button>
-				<button type="button" class="btn bg-gradient-info editarIngrediente" id="editarIngrediente">
+				<button type="button" class="btn bg-gradient-success saveReceita" id="saveReceita">
 					Salvar</button>
 				<button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Fechar</button>
 			</div>
@@ -272,6 +264,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 <script src="<?=base_url('assets/js/cpf.js')?>" type="text/javascript"></script>
 <script src="<?=base_url('assets/DataTables/datatables.min.js')?>" type="text/javascript"></script>
-<script src="<?=base_url('assets/js/ingrediente.js')?>" type="text/javascript"></script>
+<script src="<?=base_url('assets/js/receitas.js')?>" type="text/javascript"></script>
 </body>
 </html>
