@@ -40,7 +40,7 @@
 						</span>
 					</button>
 					<div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
-						<ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+						<ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100 ">
 							<?php if(intval($this->session->userdata('login')) != 1):?>
 								<li class="nav-item ms-lg-auto">
 									<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
@@ -54,23 +54,26 @@
 									<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
 								</li>
 							<?php else:?>
-								<li class="nav-item dropdown dropdown-hover mx-2">
-									<a href="<?=base_url('Ingrediente')?>"class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
-									Gerenciar Ingredientes
-									</a>
-								</li>
-
-								<li class="nav-item dropdown dropdown-hover mx-2">
-									<a href="<?=base_url('Utensilio')?>" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
-									Gerenciar Utensílios
-									</a>
-								</li>
-								<li class="nav-item ms-lg-auto">
-									<a href="<?=base_url('Usuario/perfil')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Acessar Perfil</a>
-								</li>
-								<li class="nav-item my-auto ms-3 ms-lg-0">
+								<a class="nav-link nav-link-icon me-2" href="<?=base_url('Ingrediente')?>">
+										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										>Gerenciar Ingredientes</p>
+								</a>
+								<a class="nav-link nav-link-icon me-2" href="<?=base_url('Utensilio')?>">
+										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										>Gerenciar Utensílios</p>
+								</a>
+								<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/perfil')?>">
+										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+										data-bs-placement="bottom"
+										>Gerenciar Perfil</p>
+								</a>
+								
+								<li class="nav-item my-auto ms-lg-auto">
 									<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Sair</a>
 								</li>
+							
 							<?php endif;?>				
 						</ul>
 					</div>
