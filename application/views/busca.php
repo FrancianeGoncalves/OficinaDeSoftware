@@ -40,7 +40,7 @@
 						</span>
 					</button>
 					<div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
-						<ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100 ">
+						<ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-0 w-100 ">
 							<?php if(intval($this->session->userdata('login')) != 1):?>
 								<li class="nav-item ms-lg-auto">
 									<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
@@ -160,13 +160,9 @@
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1018774879-receitasparacriancas-paodequeijo.jpg">
 											<div class="card-body">
 												<h4 class="card-title d-flex justify-content-center">Pão de Queijo</h4>
-												<center>
 												<h5 class="card-text fa fa-users opacity-6 col-3"> 5</h5>
 												<h5 class="card-text fa fa-clock opacity-6 col-3"> 30m</h5>
-												<h5 class="card-text fa fa-star opacity-6 col-3"> 5.0</h5>
-												</center>
-												<p class="card-text">Pão de queijo ou pão de queijo brasileiro é um pequeno pão de queijo assado, geralmente consumido como lanche e café da manhã com café, é um prato muito popular no Brasil, originário do estado de Minas Gerais. O pão de queijo teve origem no Brasil.</p>
-												<br>
+												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.8</h5>
 											</div>
 
 										</div>
@@ -176,14 +172,8 @@
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1992932943-receitasparacriancas-cachorroquente.jpg">
 											<div class="card-body">
 												<h4 class="card-title d-flex justify-content-center">Cachorro quente no espeto</h4>
-												<center>
-												<h5 class="card-text fa fa-users opacity-6 col-3"> 3</h5>
-												<h5 class="card-text fa fa-clock opacity-6 col-3"> 15m</h5>
-												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.3</h5>
-												</center>
-												<p class="card-text">O cachorro-quente, também chamado de completo, pancho, jocho, shuco ou pão com cachorro, é um alimento em forma de sanduíche que é gerado pela combinação de uma salsicha do tipo Frankfurt...</p>
-												<br>	
-												<br>
+												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
 											</div>
 										</div>
 									</div>
@@ -192,13 +182,8 @@
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/456309814-receitasparacriancas-batata.jpg">
 											<div class="card-body">
 												<h4 class="card-title d-flex justify-content-center">Batata Frita</h4>
-												<center>
-												<h5 class="card-text fa fa-users opacity-6 col-3"> 2</h5>
-												<h5 class="card-text fa fa-clock opacity-6 col-3"> 17m</h5>
-												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.9</h5>
-												</center>
-												<p class="card-text">Batatas fritas ou batatas fritas, também conhecidas como batatas fritas belgas, batatas fritas belgas ou batatas fritas, são batatas que são feitas cortando-as em forma de palito e fritando-as em óleo quente até dourar, crocantes e depois removendo-as do óleo. depois tempere-os com sal.</p>
-												<br>
+												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
 											</div>
 										</div>
 									</div>
