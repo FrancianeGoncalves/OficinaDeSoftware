@@ -107,40 +107,47 @@
 		});
 	}
 
-	function editarIngrediente(){
-		$('div.modal-footer').on('click', 'button.editarIngrediente', function() {
-			let nome = $("#nome_ingrediente").val();
-			let obs = $("#obs_ingrediente").val();
-			let id = $("#idingrediente").val();
-			if(nome == null || nome == "" || nome == undefined){
+	function editarReceita(){
+		$('div#editarReceitaDiv').on('click', 'button#editarReceita', function() {
+			let nome = $("#nome").val();
+			let uid = $("#uidReceita").val();
+			let rendimento = $("#rendimento").val();
+			let tempo = $("#tempo").val();
+			let modo_preparo =  $("#modo_preparo").val();
+			modo_preparo = modo_preparo.replaceAll('<br>', '\n').replaceAll('<br><br>', '\n\n');
+			var form = new FormData();
+			form.append('nome', nome);
+			form.append('rendimento', rendimento);
+			form.append('tempo', tempo);
+			form.append('modo_preparo', modo_preparo);
+			form.append('uid', uid);
+			let error = verificarForm(form);
+			if(error){
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',
-					text: 'Favor digite um nome!'
+					text: 'Favor preencha todos os campos!'
 				});
 			}else{
-				var form = new FormData();
-				form.append('nome', nome);
-				form.append('observacao', obs);
-				form.append('id', id);
 				$.ajax({
-					url: url+'Ingrediente/editar',
+					url: url+'Receita/editar',
 					data: form,
 					cache: false,
 					contentType: false,
 					processData: false,
 					type: 'POST',
 					success: function (result, status) {
-					//	let dados = JSON.parse(result);
-						if(result.error){
+						let dados = JSON.parse(result);
+						if(dados.error){
+							let erros = dados.error.replaceAll('<p>','').replaceAll('</p>','').replaceAll('\n','<br>');
 							Swal.fire({
 								icon: 'warning',
-								title: 'Ocorreu um Problema',
-								text: result.error
+								title: 'Ops...',
+								html: erros
 							});
 						}else{
 							Swal.fire({
-								title: 'Ingrediente editado!',
+								title: 'Receita editado!',
 								icon: 'success',
 								// confirmButtonColor: '#1A73E8',
 								confirmButtonText: 'OK'
@@ -162,10 +169,11 @@
 	}
 
 	function apagar(){
-		$('td').on('click', 'a#apagarIngrediente', function() {
-			let id = $(this).attr("data-id");
+		$('div#editarReceitaDiv').on('click', 'a#deletar_receita', function() {
+			let id = $("#uidReceita").val();
 			Swal.fire({
-				title: 'Tem certeza que deseja deletar este ingrediente?',
+				icon:'warning',
+				title: 'Tem certeza que deseja deletar a receita?',
 				type: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#34c38f',
@@ -175,9 +183,9 @@
 			}).then((result) => {
 				if (result.value) {
 					var form = new FormData();
-					form.append('id', id);
+					form.append('uid', id);
 					$.ajax({
-						url: url+'Ingrediente/deletar',
+						url: url+'Receita/deletar',
 						data: form,
 						cache: false,
 						contentType: false,
@@ -185,11 +193,11 @@
 						type: 'POST',
 						success: function (result, status) {
 							Swal.fire({
-								title: 'Ingrediente deletado!',
+								title: 'Receita deletada!',
 								icon: 'success',
 								confirmButtonText: 'OK'
 							}).then((result) => {
-								location.reload();
+								window.location.href = url + "Receita";
 							});
 						},
 						error: function (xhr, ajaxOptions, thrownError) {
@@ -205,11 +213,25 @@
 		});
 	}
 
+	/**
+	 *
+	 * @param form
+	 * @returns {boolean}
+	 */
+	function verificarForm(form)
+	{
+		for (var value of form.values()) {
+			if(value == undefined || value == '' || value == 'null' || value == 'undefined'){
+				return  true;
+			}
+		}
+		return false;
+	}
+
 	function init(){
 		saveReceita();
-		editarIngrediente();
+		editarReceita();
 		apagar();
-		modalEditarIngrediente();
 	}
 
 	init();
