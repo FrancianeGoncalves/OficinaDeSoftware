@@ -163,7 +163,7 @@
 												<h5 class="card-text fa fa-star opacity-6 col-3"> 5.0</h5>
 												</center>
 												<p class="card-text">Pão de queijo ou pão de queijo brasileiro é um pequeno pão de queijo assado, geralmente consumido como lanche e café da manhã com café, é um prato muito popular no Brasil, originário do estado de Minas Gerais. O pão de queijo teve origem no Brasil.</p>
-<br>
+												<br>
 											</div>
 
 										</div>
@@ -179,8 +179,8 @@
 												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.3</h5>
 												</center>
 												<p class="card-text">O cachorro-quente, também chamado de completo, pancho, jocho, shuco ou pão com cachorro, é um alimento em forma de sanduíche que é gerado pela combinação de uma salsicha do tipo Frankfurt...</p>
-<br>	
-<br>
+												<br>	
+												<br>
 											</div>
 										</div>
 									</div>
@@ -195,7 +195,7 @@
 												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.9</h5>
 												</center>
 												<p class="card-text">Batatas fritas ou batatas fritas, também conhecidas como batatas fritas belgas, batatas fritas belgas ou batatas fritas, são batatas que são feitas cortando-as em forma de palito e fritando-as em óleo quente até dourar, crocantes e depois removendo-as do óleo. depois tempere-os com sal.</p>
-<br>
+												<br>
 											</div>
 										</div>
 									</div>
