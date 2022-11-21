@@ -157,9 +157,13 @@
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1018774879-receitasparacriancas-paodequeijo.jpg">
 											<div class="card-body">
 												<h4 class="card-title d-flex justify-content-center">Pão de Queijo</h4>
+												<center>
 												<h5 class="card-text fa fa-users opacity-6 col-3"> 5</h5>
 												<h5 class="card-text fa fa-clock opacity-6 col-3"> 30m</h5>
 												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.8</h5>
+												</center>
+												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
 											</div>
 
 										</div>
@@ -169,6 +173,11 @@
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/1992932943-receitasparacriancas-cachorroquente.jpg">
 											<div class="card-body">
 												<h4 class="card-title d-flex justify-content-center">Cachorro quente no espeto</h4>
+												<center>
+												<h5 class="card-text fa fa-users opacity-6 col-3"> 5</h5>
+												<h5 class="card-text fa fa-clock opacity-6 col-3"> 30m</h5>
+												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.8</h5>
+												</center>
 												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
 											</div>
@@ -179,6 +188,11 @@
 											<img class="img-fluid" alt="100%x280" src="https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2022/07/15/456309814-receitasparacriancas-batata.jpg">
 											<div class="card-body">
 												<h4 class="card-title d-flex justify-content-center">Batata Frita</h4>
+												<center>
+												<h5 class="card-text fa fa-users opacity-6 col-3"> 5</h5>
+												<h5 class="card-text fa fa-clock opacity-6 col-3"> 30m</h5>
+												<h5 class="card-text fa fa-star opacity-6 col-3"> 4.8</h5>
+												</center>
 												<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
 											</div>
