@@ -32,6 +32,8 @@ class MIngrediente extends CI_Model {
 	public function salvar($ingrediente)
 	{
 		$this->db->insert($this->table,$ingrediente);
+		$insert_id = $this->db->insert_id();
+		return  $insert_id;
 	}
 
 	/**
@@ -43,6 +45,7 @@ class MIngrediente extends CI_Model {
 	{
 		$this->db->where('idingrediente',$id);
 		$this->db->update($this->table, $ingrediente);
+
 	}
 
 	/**

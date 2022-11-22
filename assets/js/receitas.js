@@ -1,7 +1,7 @@
 (function ($) {
 	var url = $("#base_url").val();
 	$(document).ready(function() {
-		var table = $('#tabela-ingredientes').DataTable({
+		var table = $('#tabela-receitas').DataTable({
 			lengthChange: false,
 			scrollX: false,
 			scrollY: false,
@@ -147,7 +147,7 @@
 							});
 						}else{
 							Swal.fire({
-								title: 'Receita editado!',
+								title: 'Receita Editada!',
 								icon: 'success',
 								// confirmButtonColor: '#1A73E8',
 								confirmButtonText: 'OK'
@@ -193,7 +193,7 @@
 						type: 'POST',
 						success: function (result, status) {
 							Swal.fire({
-								title: 'Receita deletada!',
+								title: 'Receita Deletada!',
 								icon: 'success',
 								confirmButtonText: 'OK'
 							}).then((result) => {

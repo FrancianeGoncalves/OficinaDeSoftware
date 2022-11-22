@@ -44,8 +44,8 @@ class Ingrediente extends MY_Controller
 					'nome' => $this->input->post('nome'),
 					'observacao' => $this->input->post('observacao')
 				);
-				$this->MIngrediente->salvar($ingrediente);
-				echo json_encode(array("error"=>false));
+				$id=$this->MIngrediente->salvar($ingrediente);
+				echo json_encode(array("error"=>false,"id"=>$id));
 			}
 		}catch (Exception $e)
 		{

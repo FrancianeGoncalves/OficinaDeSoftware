@@ -158,7 +158,7 @@
 				</div>
 				<div class="row">
 					<div class="table-responsive">
-						<table class="table align-items-center mb-0 tableCenter" id="tabela-ingredientes">
+						<table class="table align-items-center mb-0 tableCenter" id="tabela-receitas">
 							<thead>
 							<tr>
 								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Nome</h6></th>

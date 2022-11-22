@@ -25,6 +25,7 @@
 		  rel="stylesheet" />
 	<script src="<?=base_url('assets/sweetalert2/dist/sweetalert2.all.js')?>"></script>
 	<link rel="stylesheet" type="text/css" href="<?=base_url('assets/DataTables/datatables.min.css')?>"/>
+	<link rel="stylesheet" type="text/css" href="<?=base_url('assets/select2/dist/css/select2.min.css')?>"/>
 	<style>
 		a:hover{
 			color: #FF480C !important;
@@ -158,6 +159,7 @@
 				</div>
 				<div class="row">
 					<input type="hidden" id="uidReceita" value="<?=$receita->uid?>">
+					<input type="hidden" id="idReceita" value="<?=$receita->idreceita?>">
 				</div>
 				<div class="row">
 					<div class="col-lg-8 col-sm-6">
@@ -231,6 +233,104 @@
 				</div>
 			</div>
 		</div>
+		<div class=" container py-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<h3 class="mb-5">Ingredientes</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table align-items-center mb-0 tableCenter" id="tabela-ingredientes">
+							<thead>
+							<tr>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Nome</h6></th>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Observação</h6></th>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Medida</h6></th>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Ações</h6></th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php foreach ($ingredientes as $ingrediente):?>
+								<tr>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$ingrediente->nome?></p>
+
+									</td>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$ingrediente->observacao?></p>
+									</td>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$ingrediente->quantidade?></p>
+									</td>
+									<td>
+										<a id="apagarIngrediente" data-id="<?=$ingrediente->idingrediente?>">
+											<button type="button" class="btn bg-gradient-danger"
+													title="Desvincular Ingrediente">
+												<i class="fa fa-trash"></i>
+											</button>
+										</a>
+									</td>
+								</tr>
+							<?php endforeach;?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class=" container py-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<h3 class="mb-5">Utensílios</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table align-items-center mb-0 tableCenter" id="tabela-utensilios">
+							<thead>
+							<tr>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Nome</h6></th>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Observação</h6></th>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Ações</h6></th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php foreach ($utensilios as $utensilio):?>
+								<tr>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$utensilio->nome?></p>
+
+									</td>
+									<td>
+										<p class="text-xs font-weight-bold mb-0"><?=$utensilio->observacao?></p>
+									</td>
+									<td>
+										<a id="apagarUtensilio" data-id="<?=$utensilio->idutensilio?>">
+											<button type="button" class="btn bg-gradient-danger"
+													title="Deletar Utensílio">
+												<i class="fa fa-trash"></i>
+											</button>
+										</a>
+										<a id="bntEditarUtensilio" class="bntEditarUtensilio"
+										   data-id="<?=$utensilio->idutensilio?>"
+										   data-nome="<?=$utensilio->nome?>"
+										   data-obs="<?=$utensilio->observacao?>">
+											<button type="button" class="btn bg-gradient-info" title="Editar Utensílio">
+												<i class="fa fa-pencil"></i>
+											</button>
+										</a>
+									</td>
+								</tr>
+							<?php endforeach;?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 	<!-- END Blogs w/ 4 cards w/ image & text & link -->
 </div>
@@ -250,6 +350,122 @@
 		</div>
 	</div>
 </footer>
+<!-- Modal Ingrediente-->
+<div class="modal fade" id="addIngredienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Vincular Ingrediente</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<label class="form-label requiredInput">Ingrediente</label>
+					<div class="input-group input-group-static my-3" id="divIngrediente">
+						<select class="form-control select_ingredientes" id="exampleFormControlSelect1"
+								data-placeholder="Selecione">
+							<option disabled selected value> Selecione o Tipo</option>
+							<?php foreach ($ingredientes_vincular as $ingrediente_vincular): ?>
+								<option value="<?php
+								echo($ingrediente_vincular->idingrediente); ?>"
+								><?= $ingrediente_vincular->nome ?> <?=$ingrediente_vincular->observacao?
+											"(".$ingrediente_vincular->observacao.")":""?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group input-group-static my-3" id="divMedida">
+						<label class="form-label requiredInput">Medida</label>
+						<input type="text" class="form-control medida" name="medida" id="medida">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bg-gradient-info modalAddNovoIngrediente"
+						id="modalAddNovoIngrediente">
+					Novo Ingrediente</button>
+				<button type="button" class="btn bg-gradient-success vincularIngrediente" id="vincularIngrediente">
+					Salvar</button>
+				<button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="addNovoIngredienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Novo Ingrediente</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="input-group input-group-static my-3" id="divNome">
+						<label class="form-label requiredInput">Nome</label>
+						<input type="text" class="form-control nome" name="nome_ingrediente" id="nome_ingrediente">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group input-group-static my-3" id="divObs">
+						<label class="form-label">Observação</label>
+						<input type="text" class="form-control obs_ingrediente"
+							   name="obs_ingrediente" id="obs_ingrediente">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bg-gradient-success saveIngrediente" id="saveIngrediente">
+					Salvar</button>
+				<button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal Utensiolio-->
+<div class="modal fade" id="addUtensilioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Vincular Utensílio</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<input type="hidden" id="idutensilio" name="idutensilio">
+				<div class="row">
+					<div class="input-group input-group-static my-3" id="divNome">
+						<label class="form-label requiredInput">Nome</label>
+						<input type="text" class="form-control nome" name="nome_utensilio" id="nome_utensilio">
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-group input-group-static my-3" id="divObs">
+						<label class="form-label">Observação</label>
+						<input type="text" class="form-control obs_utensilio"
+							   name="obs_utensilio" id="obs_utensilio">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bg-gradient-success saveUtensilio" id="saveUtensilio">
+					Salvar</button>
+				<button type="button" class="btn bg-gradient-info editarUtensilio" id="editarUtensilio">
+					Salvar</button>
+				<button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
 <!-- -------- END FOOTER 5 w/ DARK BACKGROUND ------- -->
 <!--   Core JS Files   -->
 <script src="<?=base_url('assets/material-kit/assets/js/core/popper.min.js" type="text/javascript')?>"></script>
@@ -266,6 +482,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 <script src="<?=base_url('assets/js/cpf.js')?>" type="text/javascript"></script>
 <script src="<?=base_url('assets/DataTables/datatables.min.js')?>" type="text/javascript"></script>
+<script src="<?=base_url('assets/select2/dist/js/select2.js')?>" type="text/javascript"></script>
 <script src="<?=base_url('assets/js/receitas.js')?>" type="text/javascript"></script>
+<script src="<?=base_url('assets/js/vinculo_ingrediente.js')?>" type="text/javascript"></script>
+<script src="<?=base_url('assets/js/vinculo_utensilio.js')?>" type="text/javascript"></script>
 </body>
 </html>
