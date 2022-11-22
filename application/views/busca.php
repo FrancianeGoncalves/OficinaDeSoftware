@@ -27,61 +27,60 @@
 
 <!-- Navbar -->
 <div class="container position-sticky z-index-sticky top-0"><div class="row"><div class="col-12">
-			<nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-				<div class="container-fluid">
-					<a class="navbar-brand font-weight-bolder ms-sm-3" href="https://demos.creative-tim.com/material-kit/presentation" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-					O que tem pra hoje?
-					</a>
-					<button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon mt-2">
-						<span class="navbar-toggler-bar bar1"></span>
-						<span class="navbar-toggler-bar bar2"></span>
-						<span class="navbar-toggler-bar bar3"></span>
-						</span>
-					</button>
-					<div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
-						<ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-0 w-100 ">
-							<?php if(intval($this->session->userdata('login')) != 1):?>
-								<li class="nav-item ms-lg-auto">
-									<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
-									<i class="fa fa-user-plus me-1"></i>
-										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-										data-bs-placement="bottom"
-										>Cadastre-se</p>
-									</a>
-								</li>
-								<li class="nav-item my-auto ms-3 ms-lg-0">
-									<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
-								</li>
-							<?php else:?>
-								<a class="nav-link nav-link-icon me-2" href="<?=base_url('Ingrediente')?>">
-										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-										data-bs-placement="bottom"
-										>Gerenciar Ingredientes</p>
-								</a>
-								<a class="nav-link nav-link-icon me-2" href="<?=base_url('Utensilio')?>">
-										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-										data-bs-placement="bottom"
-										>Gerenciar Utensílios</p>
-								</a>
-								<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/perfil')?>">
-										<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-										data-bs-placement="bottom"
-										>Gerenciar Perfil</p>
-								</a>
-								
-								<li class="nav-item my-auto ms-lg-auto">
-									<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Sair</a>
-								</li>
-							
-							<?php endif;?>				
-						</ul>
-					</div>
+	<nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+		<div class="container-fluid">
+			<a  href="<?=base_url()?>" class="navbar-brand font-weight-bolder ms-sm-3"  href="#">
+			O que tem pra hoje?
+			</a>
+			<button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon mt-2">
+				<span class="navbar-toggler-bar bar1"></span>
+				<span class="navbar-toggler-bar bar2"></span>
+				<span class="navbar-toggler-bar bar3"></span>
+				</span>
+			</button>
+			<div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+				<ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-0 w-100 ">
+					<?php if(intval($this->session->userdata('login')) != 1):?>
+						<li class="nav-item ms-lg-auto">
+							<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
+							<i class="fa fa-user-plus me-1"></i>
+								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+								data-bs-placement="bottom"
+								>Cadastre-se</p>
+							</a>
+						</li>
+						<li class="nav-item my-auto ms-3 ms-lg-0">
+							<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
+						</li>
+					<?php else:?>
+						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Ingrediente')?>">
+								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+								data-bs-placement="bottom"
+								>Gerenciar Ingredientes</p>
+						</a>
+						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Utensilio')?>">
+								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+								data-bs-placement="bottom"
+								>Gerenciar Utensílios</p>
+						</a>
+						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/perfil')?>">
+								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+								data-bs-placement="bottom"
+								>Gerenciar Perfil</p>
+						</a>
+						
+						<li class="nav-item my-auto ms-lg-auto">
+							<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Sair</a>
+						</li>		
+					<?php endif;?>				
+				</ul>
+			</div>
 
-				</div>
-			</nav>
-		<!-- End Navbar -->
+		</div>
+	</nav>
 		</div></div></div>
+<!-- End Navbar -->
 <div class="page-header align-items-start min-vh-100 " background_attachment ="scroll" style="background-image: url('<?=base_url('assets/img/fundo2.png')?>');" loading="lazy">
 	<span class="mask bg-gradient-dark opacity-6"></span>
 	<div class="container my-auto">
