@@ -44,8 +44,8 @@ class Utensilio extends MY_Controller
 					'nome' => $this->input->post('nome'),
 					'observacao' => $this->input->post('observacao')
 				);
-				$this->MUtensilio->salvar($utensilio);
-				echo json_encode(array("error"=>false));
+				$id=$this->MUtensilio->salvar($utensilio);
+				echo json_encode(array("error"=>false,"id"=>$id));
 			}
 		}catch (Exception $e)
 		{

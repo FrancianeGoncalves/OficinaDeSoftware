@@ -17,6 +17,7 @@ class Receita extends MY_Controller
 		$this->load->model('MUtensilio');
 		$this->load->model('MIngrediente');
 		$this->load->model('MVinculoIngrediente');
+		$this->load->model('MVinculoUtensilio');
 	}
 
 	/**
@@ -44,9 +45,9 @@ class Receita extends MY_Controller
 		$dados = array(
 			'receita'=>$receita,
 			'ingredientes'=>$this->MVinculoIngrediente->getAllReceita($receita->idreceita),
-			'utensilios'=>array(),
+			'utensilios'=>$this->MVinculoUtensilio->getAllReceita($receita->idreceita),
 			'ingredientes_vincular'=>$this->MIngrediente->getAll(),
-			'utensilios_vincular'=>$this->MUtensilio->getAll(),
+			'utensilios_vincular'=>$this->MUtensilio->getAll($receita->idreceita),
 		);
 		$this->load->view('receita',$dados);
 	}
@@ -162,6 +163,85 @@ class Receita extends MY_Controller
 		}catch (Exception $e)
 		{
 			echo json_encode("Erro ao cadastrar utensilio");
+		}
+	}
+
+	/**
+	 * Utensilios da Receita:
+	 */
+
+	/**
+	 * @return void
+	 */
+	public function vincularUtensilio(){
+		try
+		{
+			$this->form_validation->set_rules('utensilio', 'Utensilio', 'required');
+			$validation = $this->form_validation->run();
+			if($validation == FALSE)
+			{
+				echo json_encode(array("error"=>validation_errors()));
+			}else
+			{
+				$vinculo = array(
+					'idutensilio' => $this->input->post('utensilio'),
+					'idreceita' => $this->input->post('receita'),
+				);
+				$update = $this->MVinculoUtensilio->store($vinculo,$this->input->post('utensilio'),
+					$this->input->post('receita'));
+				echo json_encode(array("error"=>false,"update"=>$update));
+			}
+		}catch (Exception $e)
+		{
+			echo json_encode("Erro ao cadastrar utensilio");
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function deletarVinculoUtensilio(){
+		try
+		{
+			$this->MVinculoUtensilio->excluir($this->input->post('idutensilio'),$this->input->post('idreceita'));
+			echo json_encode(array("error"=>false));
+		}catch (Exception $e)
+		{
+			echo json_encode("Erro ao cadastrar utensilio");
+		}
+	}
+
+	/**
+	 *
+	 */
+	public function uploadImg()
+	{
+		try {
+			$path = "./uploads";
+
+			if ( ! is_dir($path)) {
+				mkdir($path, 0777, $recursive = true);
+			}
+			$uid = guid();
+			$configUpload['upload_path'] = $path;
+			$configUpload['file_name'] = $_FILES['arquivo']['name'];;
+			$configUpload['allowed_types'] = 'pdf|PDF|png|jpeg|jpg';
+
+			$this->load->library('upload', $configUpload);
+
+			if (!$this->upload->do_upload('arquivo')) {
+				echo json_encode(array("error"=>"Erro no upload do arquivo, verifique a extenção da imagem!"));
+			} else {
+				$data = $this->upload->data();
+				$receita = array(
+					'imagem' => $data['file_name']
+				);
+				$this->MReceita->editar($receita,$this->input->post('uid'));
+				echo json_encode(array("error"=>false));
+			}
+
+		}catch (\Exception $e){
+			echo json_encode(array("error"=>"Erro no upload do Arquivo!"));
 		}
 	}
 }

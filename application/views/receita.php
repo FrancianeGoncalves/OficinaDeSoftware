@@ -94,7 +94,8 @@
 						<li class="nav-item my-auto ms-3 ms-lg-0">
 							<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
 						</li>
-					<?php else:?>
+					<?php else:
+						if(intval($this->session->userdata('tipo')) == 1):?>
 						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Ingrediente')?>">
 								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
 								data-bs-placement="bottom"
@@ -105,6 +106,12 @@
 								data-bs-placement="bottom"
 								>Gerenciar Utensílios</p>
 						</a>
+					<?php endif;?>
+						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Receita')?>">
+							<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+							   data-bs-placement="bottom"
+							>Gerenciar Receitas</p>
+						</a>
 						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/perfil')?>">
 								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
 								data-bs-placement="bottom"
@@ -114,7 +121,7 @@
 						<li class="nav-item my-auto ms-lg-auto">
 							<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Sair</a>
 						</li>		
-					<?php endif;?>				
+					<?php endif;?>
 				</ul>
 			</div>
 
@@ -187,10 +194,12 @@
 							><?=$receita->modo_preparo?></textarea>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" id="imgReceitaDiv">
 						<div class="col-lg-3 col-sm-6" id="divAvatar">
 							<div class="card card-blog card-background cursor-pointer">
-								<div class="full-background" style="background-image: url('<?=base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg')?>')" loading="lazy"></div>
+								<div class="full-background" style="background-image: url('<?=$receita->imagem==''?
+										base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg'):
+										base_url('uploads/'.$receita->imagem)?>')" loading="lazy"></div>
 								<div class="card-body">
 									<div class="content-left text-start my-auto py-4">
 										<h2 class="card-title text-white">Adicione uma Imagem de sua receita</h2>
@@ -201,8 +210,19 @@
 									</div>
 								</div>
 							</div>
-							<button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2"
-									id="editarAvatar">
+							<div class="row">
+								<form method="POST" id="formImgHeader"  enctype="multipart/form-data">
+									<div class="input-group">
+										<input type="file" class="form-control imagePerfilUser" id="formFile"
+											   aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+											   name="arquivoImg" required="Campo Obrigatorio"
+											   accept="image/gif, image/jpeg, image/png" >
+									</div>
+									<small>Arquivos aceitos: png, jpg, jpeg</small>
+								</form>
+							</div>
+							<button type="button" class="btn bg-gradient-info w-100 my-4 mb-2"
+									id="uploadimg">
 								<i class="fa fa-camera"></i>
 								Editar Imagem</button>
 						</div>
@@ -239,7 +259,7 @@
 							<tr>
 								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Nome</h6></th>
 								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Observação</h6></th>
-								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Medida</h6></th>
+								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Quantidade</h6></th>
 								<th class="text-uppercase text-secondary text-xxs font-weight-bolder"><h6>Ações</h6></th>
 							</tr>
 							</thead>
@@ -302,16 +322,8 @@
 									<td>
 										<a id="apagarUtensilio" data-id="<?=$utensilio->idutensilio?>">
 											<button type="button" class="btn bg-gradient-danger"
-													title="Deletar Utensílio">
+													title="Desvincular Utensílio">
 												<i class="fa fa-trash"></i>
-											</button>
-										</a>
-										<a id="bntEditarUtensilio" class="bntEditarUtensilio"
-										   data-id="<?=$utensilio->idutensilio?>"
-										   data-nome="<?=$utensilio->nome?>"
-										   data-obs="<?=$utensilio->observacao?>">
-											<button type="button" class="btn bg-gradient-info" title="Editar Utensílio">
-												<i class="fa fa-pencil"></i>
 											</button>
 										</a>
 									</td>
@@ -371,7 +383,7 @@
 				</div>
 				<div class="row">
 					<div class="input-group input-group-static my-3" id="divMedida">
-						<label class="form-label requiredInput">Medida</label>
+						<label class="form-label requiredInput">Quantidade</label>
 						<input type="text" class="form-control medida" name="medida" id="medida">
 					</div>
 				</div>
@@ -433,15 +445,51 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<input type="hidden" id="idutensilio" name="idutensilio">
 				<div class="row">
-					<div class="input-group input-group-static my-3" id="divNome">
+					<label class="form-label requiredInput">Utensílio</label>
+					<div class="input-group input-group-static my-3" id="divUtensilio">
+						<select class="form-control select_utensilios" id="exampleFormControlSelect1"
+								data-placeholder="Selecione">
+							<option disabled selected value> Selecione o Utensílio</option>
+							<?php foreach ($utensilios_vincular as $utensilio_vincular): ?>
+								<option value="<?php
+								echo($utensilio_vincular->idutensilio); ?>"
+								><?= $utensilio_vincular->nome ?> <?=$utensilio_vincular->observacao?
+											"(".$utensilio_vincular->observacao.")":""?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bg-gradient-info modalAddNovoUtensilio">
+					Novo Utensílio</button>
+				<button type="button" class="btn bg-gradient-success vincularUtensilio" id="vincularUtensilio">
+					Salvar</button>
+				<button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="addNovoUtensilioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Novo Utensílio</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="input-group input-group-static my-3" id="divNomeUtensilio">
 						<label class="form-label requiredInput">Nome</label>
 						<input type="text" class="form-control nome" name="nome_utensilio" id="nome_utensilio">
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-group input-group-static my-3" id="divObs">
+					<div class="input-group input-group-static my-3" id="divObsUtensilio">
 						<label class="form-label">Observação</label>
 						<input type="text" class="form-control obs_utensilio"
 							   name="obs_utensilio" id="obs_utensilio">
@@ -450,8 +498,6 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn bg-gradient-success saveUtensilio" id="saveUtensilio">
-					Salvar</button>
-				<button type="button" class="btn bg-gradient-info editarUtensilio" id="editarUtensilio">
 					Salvar</button>
 				<button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Fechar</button>
 			</div>

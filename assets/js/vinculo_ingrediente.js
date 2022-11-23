@@ -48,8 +48,6 @@
 			.appendTo('#datatable-empresas_wrapper .col-md-6:eq(0)');
 		$(".paging_simple_numbers").addClass('pagination pagination-primary');
 		$(".dataTables_paginate").addClass('pagination pagination-primary');
-		$('.select_ingredientes').select2({ width: '100%' });
-
 	});
 
 	/**
@@ -58,6 +56,7 @@
 	function modalAddIngrediente(){
 		$('#addIngredienteModal [name="medida"]').val("");
 		$('#divMedida').removeClass('is-focused');
+		$('.select_ingredientes').select2({ width: '100%' });
 		$('#addIngredienteModal').modal('show');
 	}
 

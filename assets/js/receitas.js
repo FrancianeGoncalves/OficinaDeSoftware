@@ -215,6 +215,64 @@
 
 	/**
 	 *
+	 */
+	function uploadImg()
+	{
+		$('div#imgReceitaDiv').on('click', 'button#uploadimg', function() {
+			let form = new FormData();
+			let arquivo = $('#formFile').prop('files')[0];
+			let uid = $("#uidReceita").val();
+			form.append('arquivo', arquivo);
+			form.append('uid', uid);
+			let error = verificarForm(form);
+			if(!error) {
+				$.ajax({
+					url: url + "Receita/uploadImg",
+					data: form,
+					cache: false,
+					contentType: false,
+					processData: false,
+					type: 'POST',
+					success: function (result, status) {
+						let dados = JSON.parse(result);
+						if(dados.error){
+							let erros = dados.error.replaceAll('<p>','').replaceAll('</p>','').replaceAll('\n','<br>');
+							Swal.fire({
+								icon: 'warning',
+								title: 'Ops...',
+								html: erros
+							});
+						}else{
+							Swal.fire({
+								title: 'Upload Realizado com Sucesso!',
+								icon: 'success',
+								// confirmButtonColor: '#1A73E8',
+								confirmButtonText: 'OK'
+							}).then((result) => {
+								location.reload();
+							});
+						}
+					},
+					error: function (xhr, ajaxOptions, thrownError) {
+						Swal.fire({
+							icon: 'warning',
+							title: 'Ocorreu um Problema',
+							text: 'Entre em contato com o Suporte para verificar o problema'
+						});
+					},
+				});
+			}else{
+				Swal.fire({
+					icon: 'warning',
+					title: 'Ocorreu um Problema',
+					text: 'Selecione uma imagem!'
+				});
+			}
+		});
+	};
+
+	/**
+	 *
 	 * @param form
 	 * @returns {boolean}
 	 */
@@ -232,6 +290,7 @@
 		saveReceita();
 		editarReceita();
 		apagar();
+		uploadImg();
 	}
 
 	init();

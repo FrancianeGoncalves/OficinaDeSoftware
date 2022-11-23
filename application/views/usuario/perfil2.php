@@ -78,6 +78,11 @@
 								data-bs-placement="bottom"
 								>Gerenciar Utensílios</p>
 						</a>
+						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Receita')?>">
+								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+								data-bs-placement="bottom"
+								>Gerenciar Receitas</p>
+						</a>
 						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/perfil')?>">
 								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
 								data-bs-placement="bottom"

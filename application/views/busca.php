@@ -44,36 +44,43 @@
 					<?php if(intval($this->session->userdata('login')) != 1):?>
 						<li class="nav-item ms-lg-auto">
 							<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/cadastrar')?>">
-							<i class="fa fa-user-plus me-1"></i>
+								<i class="fa fa-user-plus me-1"></i>
 								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-								data-bs-placement="bottom"
+								   data-bs-placement="bottom"
 								>Cadastre-se</p>
 							</a>
 						</li>
 						<li class="nav-item my-auto ms-3 ms-lg-0">
 							<a href="<?=base_url('Login')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Login</a>
 						</li>
-					<?php else:?>
-						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Ingrediente')?>">
+					<?php else:
+						if(intval($this->session->userdata('tipo')) == 1):?>
+							<a class="nav-link nav-link-icon me-2" href="<?=base_url('Ingrediente')?>">
 								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-								data-bs-placement="bottom"
+								   data-bs-placement="bottom"
 								>Gerenciar Ingredientes</p>
-						</a>
-						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Utensilio')?>">
+							</a>
+							<a class="nav-link nav-link-icon me-2" href="<?=base_url('Utensilio')?>">
 								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-								data-bs-placement="bottom"
+								   data-bs-placement="bottom"
 								>Gerenciar Utensílios</p>
+							</a>
+						<?php endif;?>
+						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Receita')?>">
+							<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+							   data-bs-placement="bottom"
+							>Gerenciar Receitas</p>
 						</a>
 						<a class="nav-link nav-link-icon me-2" href="<?=base_url('Usuario/perfil')?>">
-								<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-								data-bs-placement="bottom"
-								>Gerenciar Perfil</p>
+							<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+							   data-bs-placement="bottom"
+							>Gerenciar Perfil</p>
 						</a>
-						
+
 						<li class="nav-item my-auto ms-lg-auto">
 							<a href="<?=base_url('Login/logout')?>" class="btn btn-sm  bg-gradient-warning  mb-0 me-1 mt-2 mt-md-0">Sair</a>
-						</li>		
-					<?php endif;?>				
+						</li>
+					<?php endif;?>
 				</ul>
 			</div>
 
