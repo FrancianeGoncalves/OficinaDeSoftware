@@ -194,54 +194,7 @@
 							><?=$receita->modo_preparo?></textarea>
 						</div>
 					</div>
-					<div class="row" id="imgReceitaDiv">
-						<div class="col-lg-3 col-sm-6" id="divAvatar">
-							<div class="card card-blog card-background cursor-pointer">
-								<div class="full-background" style="background-image: url('<?=$receita->imagem==''?
-										base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg'):
-										base_url('uploads/'.$receita->imagem)?>')" loading="lazy"></div>
-								<div class="card-body">
-									<div class="content-left text-start my-auto py-4">
-										<h2 class="card-title text-white">Adicione uma Imagem de sua receita</h2>
-<!--										<p class="card-description text-white">Adicione uma Imagem de sua receita</p>-->
-<!--										<a href="javascript:;" class="text-white text-sm icon-move-right">Leia Mais-->
-<!--											<i class="fas fa-arrow-right text-xs ms-1"></i>-->
-<!--										</a>-->
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<form method="POST" id="formImgHeader"  enctype="multipart/form-data">
-									<div class="input-group">
-										<input type="file" class="form-control imagePerfilUser" id="formFile"
-											   aria-describedby="inputGroupFileAddon04" aria-label="Upload"
-											   name="arquivoImg" required="Campo Obrigatorio"
-											   accept="image/gif, image/jpeg, image/png" >
-									</div>
-									<small>Arquivos aceitos: png, jpg, jpeg</small>
-								</form>
-							</div>
-							<button type="button" class="btn bg-gradient-info w-100 my-4 mb-2"
-									id="uploadimg">
-								<i class="fa fa-camera"></i>
-								Editar Imagem</button>
-						</div>
-						<div class="col-lg-7 col-sm-6">
-
-						</div>
-						<div class="col-lg-2 col-sm-6">
-							<div class="text-center" id="editarReceitaDiv">
-								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2"
-										id="editarReceita">Salvar</button>
-								<a class="nav-link nav-link-icon me-2" id="deletar_receita">
-									<i class="fa fa-trash"></i>
-									<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-									   data-bs-placement="bottom"
-									>Deletar Receita</p>
-								</a>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -334,7 +287,57 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row" id="imgReceitaDiv">
+						<div class="col-lg-3 col-sm-6" id="divAvatar">
+							<div class="card card-blog card-background">
+								<div class="full-background" style="background-image: url('<?=$receita->imagem==''?
+										base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg'):
+										base_url('uploads/'.$receita->imagem)?>')" loading="lazy"></div>
+								<div class="card-body">
+									<div class="content-left text-start my-auto py-4">
+										<!-- <h2 class="card-title text-white">Adicione uma Imagem de sua receita</h2> -->
+<!--										<p class="card-description text-white">Adicione uma Imagem de sua receita</p>-->
+<!--										<a href="javascript:;" class="text-white text-sm icon-move-right">Leia Mais-->
+<!--											<i class="fas fa-arrow-right text-xs ms-1"></i>-->
+<!--										</a>-->
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<form method="POST" id="formImgHeader"  enctype="multipart/form-data">
+									<div class="input-group">
+										<input type="file" class="form-control imagePerfilUser" id="formFile"
+											   aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+											   name="arquivoImg" required="Campo Obrigatorio"
+											   accept="image/gif, image/jpeg, image/png" >
+									</div>
+									<small>Arquivos aceitos: png, jpg, jpeg</small>
+								</form>
+							</div>
+							<button type="button" class="btn bg-gradient-info w-100 my-4 mb-2"
+									id="uploadimg">
+								<i class="fa fa-camera"></i>
+								Salvar Imagem</button>
+						</div>
+						<div class="col-lg-7 col-sm-6">
+
+						</div>
+						<div class="col-lg-2 col-sm-6">
+							<div class="text-center" id="editarReceitaDiv">
+								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2"
+										id="editarReceita">Salvar</button>
+								<a class="nav-link nav-link-icon me-2" id="deletar_receita">
+									<i class="fa fa-trash"></i>
+									<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+									   data-bs-placement="bottom"
+									>Deletar Receita</p>
+								</a>
+							</div>
+						</div>
+					</div>
 		</div>
+		
 	</section>
 	<!-- END Blogs w/ 4 cards w/ image & text & link -->
 </div>
