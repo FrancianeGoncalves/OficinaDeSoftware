@@ -156,6 +156,14 @@
 						<h3 class="mb-5">Receita:   <?=$receita->nome?></h3>
 					</div>
 				</div>
+				<?php if(intval($update)==0):?>
+				<div class="row" style="margin-bottom: 10%">
+					<div class="text-center">
+						<img src="<?=base_url('uploads/'.$receita->imagem)?>" class="rounded" alt="..."
+						style="max-height: 300px">
+					</div>
+				</div>
+				<?php endif;?>
 				<div class="row">
 					<input type="hidden" id="uidReceita" value="<?=$receita->uid?>">
 					<input type="hidden" id="idReceita" value="<?=$receita->idreceita?>">
@@ -165,7 +173,7 @@
 						<div class="input-group input-group-static mb-4">
 							<label>Nome</label>
 							<input class="form-control nome" placeholder="Digite o Nome" type="text"
-								   name="nome" id="nome" readonly
+								   name="nome" id="nome" readonly  <?=intval($update)==1?'':'disabled'?>
 								   value="<?=$receita->nome?>">
 						</div>
 					</div>
@@ -174,7 +182,8 @@
 							<label>Rendimento</label>
 							<input class="form-control rendimento" placeholder="Digite o número de porções" type="number"
 								   name="rendimento" id="rendimento" required min="0" step="1"
-								   value="<?=$receita->rendimento?>">
+								   value="<?=$receita->rendimento?>"
+								<?=intval($update)==1?'':'disabled'?>>
 						</div>
 					</div>
 					<div class="col-lg-2 col-sm-6">
@@ -183,6 +192,7 @@
 							<input class="form-control tempo" placeholder="Digite o tempo para preparo"
 								   type="number" min="0" step="1"
 								   name="tempo" id="tempo"
+								<?=intval($update)==1?'':'disabled'?>
 								   value="<?=$receita->tempo?>" required>
 						</div>
 					</div>
@@ -191,10 +201,60 @@
 							<label>Modo de Preparo</label>
 							<textarea class="form-control"
 									  style="width: 100% !important;min-height: 200px" id="modo_preparo"
+									  <?=intval($update)==1?'':'disabled'?>
 							><?=$receita->modo_preparo?></textarea>
 						</div>
 					</div>
-					
+					<?php if(intval($update)==1):?>
+					<div class="row" id="imgReceitaDiv">
+						<div class="col-lg-3 col-sm-6" id="divAvatar">
+							<div class="card card-blog card-background cursor-pointer">
+								<div class="full-background" style="background-image: url('<?=$receita->imagem==''?
+										base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg'):
+										base_url('uploads/'.$receita->imagem)?>')" loading="lazy"></div>
+								<div class="card-body">
+									<div class="content-left text-start my-auto py-4">
+<!--										<h2 class="card-title text-white">Adicione uma Imagem de sua receita</h2>-->
+<!--										<p class="card-description text-white">Adicione uma Imagem de sua receita</p>-->
+<!--										<a href="javascript:;" class="text-white text-sm icon-move-right">Leia Mais-->
+<!--											<i class="fas fa-arrow-right text-xs ms-1"></i>-->
+<!--										</a>-->
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<form method="POST" id="formImgHeader"  enctype="multipart/form-data">
+									<div class="input-group">
+										<input type="file" class="form-control imagePerfilUser" id="formFile"
+											   aria-describedby="inputGroupFileAddon04" aria-label="Upload"
+											   name="arquivoImg" required="Campo Obrigatorio"
+											   accept="image/gif, image/jpeg, image/png" >
+									</div>
+									<small>Arquivos aceitos: png, jpg, jpeg</small>
+								</form>
+							</div>
+							<button type="button" class="btn bg-gradient-info w-100 my-4 mb-2"
+									id="uploadimg">
+								<i class="fa fa-camera"></i>
+								Salvar Imagem</button>
+						</div>
+						<div class="col-lg-7 col-sm-6">
+
+						</div>
+						<div class="col-lg-2 col-sm-6">
+							<div class="text-center" id="editarReceitaDiv">
+								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2"
+										id="editarReceita">Salvar</button>
+								<a class="nav-link nav-link-icon me-2" id="deletar_receita">
+									<i class="fa fa-trash"></i>
+									<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+									   data-bs-placement="bottom"
+									>Deletar Receita</p>
+								</a>
+							</div>
+						</div>
+					</div>
+					<?php endif;?>
 				</div>
 			</div>
 		</div>
@@ -287,57 +347,8 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="row" id="imgReceitaDiv">
-						<div class="col-lg-3 col-sm-6" id="divAvatar">
-							<div class="card card-blog card-background">
-								<div class="full-background" style="background-image: url('<?=$receita->imagem==''?
-										base_url('assets/img/59fba610c9a40c61c9f26f0a1e5db912.jpg'):
-										base_url('uploads/'.$receita->imagem)?>')" loading="lazy"></div>
-								<div class="card-body">
-									<div class="content-left text-start my-auto py-4">
-										<!-- <h2 class="card-title text-white">Adicione uma Imagem de sua receita</h2> -->
-<!--										<p class="card-description text-white">Adicione uma Imagem de sua receita</p>-->
-<!--										<a href="javascript:;" class="text-white text-sm icon-move-right">Leia Mais-->
-<!--											<i class="fas fa-arrow-right text-xs ms-1"></i>-->
-<!--										</a>-->
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<form method="POST" id="formImgHeader"  enctype="multipart/form-data">
-									<div class="input-group">
-										<input type="file" class="form-control imagePerfilUser" id="formFile"
-											   aria-describedby="inputGroupFileAddon04" aria-label="Upload"
-											   name="arquivoImg" required="Campo Obrigatorio"
-											   accept="image/gif, image/jpeg, image/png" >
-									</div>
-									<small>Arquivos aceitos: png, jpg, jpeg</small>
-								</form>
-							</div>
-							<button type="button" class="btn bg-gradient-info w-100 my-4 mb-2"
-									id="uploadimg">
-								<i class="fa fa-camera"></i>
-								Salvar Imagem</button>
-						</div>
-						<div class="col-lg-7 col-sm-6">
-
-						</div>
-						<div class="col-lg-2 col-sm-6">
-							<div class="text-center" id="editarReceitaDiv">
-								<button type="submit" class="btn bg-gradient-warning w-100 my-4 mb-2"
-										id="editarReceita">Salvar</button>
-								<a class="nav-link nav-link-icon me-2" id="deletar_receita">
-									<i class="fa fa-trash"></i>
-									<p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-									   data-bs-placement="bottom"
-									>Deletar Receita</p>
-								</a>
-							</div>
-						</div>
-					</div>
 		</div>
-		
+
 	</section>
 	<!-- END Blogs w/ 4 cards w/ image & text & link -->
 </div>

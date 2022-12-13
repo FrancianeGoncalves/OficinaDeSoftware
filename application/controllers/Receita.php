@@ -48,6 +48,7 @@ class Receita extends MY_Controller
 			'utensilios'=>$this->MVinculoUtensilio->getAllReceita($receita->idreceita),
 			'ingredientes_vincular'=>$this->MIngrediente->getAll(),
 			'utensilios_vincular'=>$this->MUtensilio->getAll($receita->idreceita),
+			'update'=> 1
 		);
 		$this->load->view('receita',$dados);
 	}

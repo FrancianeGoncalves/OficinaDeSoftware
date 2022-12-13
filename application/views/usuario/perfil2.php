@@ -222,7 +222,7 @@
 								<h2 class="card-title text-white">Cadastre Novas Receitas</h2>
 								<p class="card-description text-white">Colabore para que todos os usuários encontre receitas
 									com os ingredientes que possuem.</p>
-								<a href="javascript:;" class="text-white text-sm icon-move-right">Leia Mais
+								<a  href="<?=base_url('Receita')?>"  class="text-white text-sm icon-move-right">Leia Mais
 									<i class="fas fa-arrow-right text-xs ms-1"></i>
 								</a>
 							</div>

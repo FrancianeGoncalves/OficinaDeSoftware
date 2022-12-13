@@ -1,49 +1,93 @@
 (function ($) {
 	var url = $("#base_url").val();
+	var update = parseInt($("#actios_update").val());
 	$(document).ready(function() {
-		var table = $('#tabela-utensilios').DataTable({
-			lengthChange: false,
-			scrollX: false,
-			scrollY: false,
-			dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
-			buttons: [
-				{
-					className: 'btn btn-warning btnWarning',
-					text: '<span class="btn-inner--icon "><i class="fa fa-plus"></i></span>',
-					action: function ( e, dt, node, config ) {
-						modalAddUtensilio();
+		var table = null;
+		if(update==1) {
+			table = $('#tabela-utensilios').DataTable({
+				lengthChange: false,
+				scrollX: false,
+				scrollY: false,
+				dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
+				buttons: [
+					{
+						className: 'btn btn-warning btnWarning',
+						text: '<span class="btn-inner--icon "><i class="fa fa-plus"></i></span>',
+						action: function (e, dt, node, config) {
+							modalAddUtensilio();
+						}
+					}
+				],
+				"language": {
+					sEmptyTable: "Nenhum utensilio encontrado",
+					sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+					sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+					sInfoFiltered: "(Filtrados de _MAX_ registros)",
+					sInfoPostFix: "",
+					sInfoThousands: ".",
+					sLengthMenu: "_MENU_ resultados por página",
+					sLoadingRecords: "Carregando...",
+					sProcessing: "Processando...",
+					sZeroRecords: "Nenhum Utensilio encontrado",
+					sSearch: "Pesquisar",
+					oPaginate: {
+						sNext: ">",
+						sPrevious: "<",
+						sFirst: "Primeiro",
+						sLast: "Último"
+					},
+					oAria: {
+						sSortAscending: ": Ordenar colunas de forma ascendente",
+						sSortDescending: ": Ordenar colunas de forma descendente"
+					},
+					buttons: {
+						colvis: 'Colunas Visíveis',
+						copy: 'Copiar'
 					}
 				}
-			],
-			"language": {
-				sEmptyTable: "Nenhum utensilio encontrado",
-				sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-				sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
-				sInfoFiltered: "(Filtrados de _MAX_ registros)",
-				sInfoPostFix: "",
-				sInfoThousands: ".",
-				sLengthMenu: "_MENU_ resultados por página",
-				sLoadingRecords: "Carregando...",
-				sProcessing: "Processando...",
-				sZeroRecords: "Nenhum Utensilio encontrado",
-				sSearch: "Pesquisar",
-				oPaginate: {
-					sNext: ">",
-					sPrevious: "<",
-					sFirst: "Primeiro",
-					sLast: "Último"
-				},
-				oAria: {
-					sSortAscending: ": Ordenar colunas de forma ascendente",
-					sSortDescending: ": Ordenar colunas de forma descendente"
-				},
-				buttons: {
-					colvis: 'Colunas Visíveis',
-					copy: 'Copiar'
+			});
+		}else{
+			table = $('#tabela-utensilios').DataTable({
+				lengthChange: false,
+				scrollX: false,
+				scrollY: false,
+				columnDefs: [
+					{
+						target:2 ,
+						visible: false,
+						searchable: false,
+					}
+				],
+				dom: '<"top"<"left-col"B><"center-col"l><"right-col"f>>rtip',
+				"language": {
+					sEmptyTable: "Nenhum utensilio encontrado",
+					sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+					sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+					sInfoFiltered: "(Filtrados de _MAX_ registros)",
+					sInfoPostFix: "",
+					sInfoThousands: ".",
+					sLengthMenu: "_MENU_ resultados por página",
+					sLoadingRecords: "Carregando...",
+					sProcessing: "Processando...",
+					sZeroRecords: "Nenhum Utensilio encontrado",
+					sSearch: "Pesquisar",
+					oPaginate: {
+						sNext: ">",
+						sPrevious: "<",
+						sFirst: "Primeiro",
+						sLast: "Último"
+					},
+					oAria: {
+						sSortAscending: ": Ordenar colunas de forma ascendente",
+						sSortDescending: ": Ordenar colunas de forma descendente"
+					},
+					buttons: {
+						colvis: 'Colunas Visíveis',
+						copy: 'Copiar'
+					}
 				}
-			}
-		});
-
+			});
+		}
 		table.buttons().container()
 			.appendTo('#datatable-empresas_wrapper .col-md-6:eq(0)');
 		$(".paging_simple_numbers").addClass('pagination pagination-primary');
