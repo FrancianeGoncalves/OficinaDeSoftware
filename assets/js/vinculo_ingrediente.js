@@ -102,7 +102,7 @@
 	function modalAddIngrediente(){
 		$('#addIngredienteModal [name="medida"]').val("");
 		$('#divMedida').removeClass('is-focused');
-		$('.select_ingredientes').select2({ width: '100%' });
+		// $('#select_ingredientes').select2({ width: '100%' });
 		$('#addIngredienteModal').modal('show');
 	}
 

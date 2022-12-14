@@ -98,7 +98,7 @@
 	 *
 	 */
 	function modalAddUtensilio(){
-		$('.select_utensilios').select2({ width: '100%' });
+		// $('#select_utensilios').select2({ width: '100%' });
 		$('#addUtensilioModal').modal('show');
 	}
 
