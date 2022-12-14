@@ -2,7 +2,6 @@
 	var url = $("#base_url").val();
 	var update = parseInt($("#actios_update").val());
 	$(document).ready(function() {
-		debugger;
 		var table = null;
 		if(update==1){
 			table = $('#tabela-ingredientes').DataTable({
