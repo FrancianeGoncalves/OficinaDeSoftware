@@ -26,6 +26,7 @@ class MVinculoIngrediente extends CI_Model {
 		ingrediente_receita.quantidade');
 		$this->db->join('ingrediente', 'ingrediente.idingrediente = ingrediente_receita.idingrediente');
 		$this->db->where('idreceita',$receita);
+		$this->db->order_by('ingrediente.nome','ASC');
 		return $this->db->get($this->table)->result_object();
 	}
 

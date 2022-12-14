@@ -384,9 +384,9 @@
 				<div class="row">
 					<label class="form-label requiredInput">Ingrediente</label>
 					<div class="input-group input-group-static my-3" id="divIngrediente">
-						<select class="form-control select_ingredientes" id="exampleFormControlSelect1"
+						<select class="form-control select_ingredientes"
 								data-placeholder="Selecione">
-							<option disabled selected value> Selecione o Tipo</option>
+<!--							<option disabled selected value> Selecione o Tipo</option>-->
 							<?php foreach ($ingredientes_vincular as $ingrediente_vincular): ?>
 								<option value="<?php
 								echo($ingrediente_vincular->idingrediente); ?>"
@@ -465,7 +465,7 @@
 					<div class="input-group input-group-static my-3" id="divUtensilio">
 						<select class="form-control select_utensilios" id="exampleFormControlSelect1"
 								data-placeholder="Selecione">
-							<option disabled selected value> Selecione o Utensílio</option>
+<!--							<option disabled selected value> Selecione o Utensílio</option>-->
 							<?php foreach ($utensilios_vincular as $utensilio_vincular): ?>
 								<option value="<?php
 								echo($utensilio_vincular->idutensilio); ?>"

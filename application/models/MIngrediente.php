@@ -22,6 +22,7 @@ class MIngrediente extends CI_Model {
 	 * @return mixed
 	 */
 	public function getAll(){
+		$this->db->order_by('nome','ASC');
 		return $this->db->get($this->table)->result_object();
 	}
 

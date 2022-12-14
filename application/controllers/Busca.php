@@ -60,11 +60,13 @@ class Busca extends CI_Controller {
 			if($resultado->numero_utensilios_select && $resultado->numero_utensilios){
 				$compatibilidadeUtensilio +=(floatval($resultado->numero_utensilios_select)/floatval($resultado->numero_utensilios))*100;
 			}
-			$dados[] = array(
-				"receita" => $resultado,
-				"compatibilidadeIngrediente" =>$compatibilidadeIngrediente,
-				"compatibilidadeUtensilio" => $compatibilidadeUtensilio
-			);
+			if(intval($resultado->numero_ingredientes_select)>0){
+				$dados[] = array(
+					"receita" => $resultado,
+					"compatibilidadeIngrediente" =>$compatibilidadeIngrediente,
+					"compatibilidadeUtensilio" => $compatibilidadeUtensilio
+				);
+			}
 		}
 		$compatibilidades  = array_column($dados, 'compatibilidadeIngrediente');
 		array_multisort($compatibilidades,SORT_DESC,$dados);

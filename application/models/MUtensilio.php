@@ -23,6 +23,7 @@ class MUtensilio extends CI_Model {
 	 */
 	public function getAll($vincular = null){
 		if($vincular == null){
+			$this->db->order_by('nome','ASC');
 			return $this->db->get($this->table)->result_object();
 		}else{
 			$query = " select * from utensilio where idutensilio not in 
