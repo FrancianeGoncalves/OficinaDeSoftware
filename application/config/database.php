@@ -74,20 +74,16 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'database-1.colgczkhpbf2.sa-east-1.rds.amazonaws.com',
 	'username' => 'root',
-	'password' => 'root',
+	'password' => 'root1234',
 	'database' => 'oqtph',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
 	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
+	'db_debug' => (ENVIRONMENT == 'production'),
 	'cache_on' => FALSE,
-	'cachedir' => '',
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
 	'encrypt' => FALSE,
 	'compress' => FALSE,
 	'stricton' => FALSE,
