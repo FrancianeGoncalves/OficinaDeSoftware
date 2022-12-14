@@ -157,7 +157,7 @@
 						<h3 class="mb-5">Receita:   <?=$receita->nome?></h3>
 					</div>
 				</div>
-				<?php if(intval($update)==0):?>
+				<?php if(intval($update)==0 && $receita->imagem):?>
 				<div class="row" style="margin-bottom: 10%">
 					<div class="text-center">
 						<img src="<?=base_url('uploads/'.$receita->imagem)?>" class="rounded" alt="..."
